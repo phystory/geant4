@@ -1,0 +1,88 @@
+//
+// ********************************************************************
+// * License and Disclaimer                                           *
+// *                                                                  *
+// * The  Geant4 software  is  copyright of the Copyright Holders  of *
+// * the Geant4 Collaboration.  It is provided  under  the terms  and *
+// * conditions of the Geant4 Software License,  included in the file *
+// * LICENSE and available at  http://cern.ch/geant4/license .  These *
+// * include a list of copyright holders.                             *
+// *                                                                  *
+// * Neither the authors of this software system, nor their employing *
+// * institutes,nor the agencies providing financial support for this *
+// * work  make  any representation or  warranty, express or implied, *
+// * regarding  this  software system or assume any liability for its *
+// * use.  Please see the license in the file  LICENSE  and URL above *
+// * for the full disclaimer and the limitation of liability.         *
+// *                                                                  *
+// * This  code  implementation is the result of  the  scientific and *
+// * technical work of the GEANT4 collaboration.                      *
+// * By using,  copying,  modifying or  distributing the software (or *
+// * any work based  on the software)  you  agree  to acknowledge its *
+// * use  in  resulting  scientific  publications,  and indicate your *
+// * acceptance of all terms of the Geant4 Software license.          *
+// ********************************************************************
+//
+//
+// $Id: ExN01DetectorConstruction.hh,v 1.6 2006/06/29 17:47:13 gunter Exp $
+// GEANT4 tag $Name: geant4-08-01-patch-01 $
+// Test-Simulation for 3He-Tubes from Mainz
+// by Sascha Falahat (sfalahat@nd.edu), 24.04.2007
+//
+
+#ifndef HeTube01DetectorConstruction_H
+#define HeTube01DetectorConstruction_H 1
+
+class G4LogicalVolume;
+class G4VPhysicalVolume;
+
+#include "G4VUserDetectorConstruction.hh"
+
+class HeTube01DetectorConstruction : public G4VUserDetectorConstruction
+{
+  public:
+
+    HeTube01DetectorConstruction();
+    ~HeTube01DetectorConstruction();
+
+    G4VPhysicalVolume* Construct();
+
+  private:
+    
+    // Logical volumes
+    //
+    G4LogicalVolume* TargetHall_log;
+    G4LogicalVolume* HeTube_log;
+    G4LogicalVolume* AlTube_log;
+    G4LogicalVolume* ParaffinBlock_log;
+    //G4LogicalVolume*   HeTube_Inner_log;
+    //G4LogicalVolume* HeTube_Param_log;
+    G4LogicalVolume* BeamPipeOuter_log;
+    G4LogicalVolume* BeamPipeInner_log;
+    G4LogicalVolume*   HeTube_Inner_log;
+    G4LogicalVolume* HeTube_Param_log;
+
+    // Physical volumes
+    //
+    G4VPhysicalVolume* TargetHall_phys;
+    G4VPhysicalVolume* HeTube_phys;
+    G4VPhysicalVolume* AlTube_phys;    
+    G4VPhysicalVolume* ParaffinBlock_phys;
+  
+    //  G4VPhysicalVolume* HeTube_Param_phys;
+    //  G4VPhysicalVolume* HeTube_Inner_phys;
+    G4VPhysicalVolume* BeamPipeOuter_phys;
+    G4VPhysicalVolume* BeamPipeInner_phys;
+    G4VPhysicalVolume* HeTube_Param_phys;
+    G4VPhysicalVolume* HeTube_Inner_phys;
+  
+
+#include "HeTube01DetectorParameterDef.hh"
+
+
+
+
+};
+
+#endif
+

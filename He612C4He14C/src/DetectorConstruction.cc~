@@ -1,0 +1,713 @@
+#include "DetectorConstruction.hh"
+#include "G4Transform3D.hh"
+#include "G4RotationMatrix.hh"
+#include "G4ThreeVector.hh"
+
+using namespace std;
+#include <math.h>
+#include <vector>
+
+
+G4double    calcMinDist(G4int A, G4int B);
+
+
+template<class T> T exponentiate(T base, int exp)
+{
+T ret = 1;
+for( ; exp>0 ; --exp)
+ret *= base;
+return ret;
+}
+
+
+DetectorConstruction::DetectorConstruction(class treeClass* crosstalk)
+    :expHallLogical(0),expHallPhysical(0)
+ {
+   mNumofDets = 0;   
+   mMinNumDist = 0;
+   mDetRadius = 2*cm;
+   //mDetRadius = 5;
+   pi = 4*atan(1);
+
+   mNumofDets = &(crosstalk->NumofDets);
+   mMinNumDist = &(crosstalk->DMinNumDist);
+   mDetLength = &(crosstalk->DetLength);
+   x = crosstalk->DetX;
+   y = crosstalk->DetY;
+   z = crosstalk->DetZ;
+
+   mDetMinDist = crosstalk->DetMinDist;
+
+   //*mDetLength = (18/2); 
+   *mDetLength = (6/2)*cm; 
+
+   materials = new Material();
+
+ //  materialOfDetector = 0;
+   materialOfDetector = 1;
+
+ }
+
+
+DetectorConstruction::~DetectorConstruction()
+ {}
+
+
+G4VPhysicalVolume* DetectorConstruction::Construct()
+ {
+
+   G4double edgelength = 6.4*cm;
+   materials -> DefineMaterials();
+
+   ExperimentalHall();
+
+   if (0)
+    {
+
+      Wheel(edgelength);
+
+    }
+   else if (0)
+    {
+
+      Ring(edgelength);
+
+    }
+   else if (0)
+    {
+
+      Block(edgelength);
+
+    }
+   else
+    {
+
+      TestCan();
+
+    }
+
+   return expHallPhysical;  
+
+ }
+
+
+void DetectorConstruction::ExperimentalHall()
+ {
+
+   G4double expHallSide = 2.0*m;
+   G4ThreeVector ExpHallPos;
+   ExpHallPos.set(0.0,0.0,0.0);
+
+   G4Box* expHallSolid = new G4Box("Experimental Hall Solid", expHallSide, expHallSide, expHallSide);
+   expHallLogical = new G4LogicalVolume(expHallSolid, materials -> Air, "Experimental Hall Logical");
+   expHallPhysical = new G4PVPlacement(0, ExpHallPos, expHallLogical, "Experimental Hall", 0, false, 0);
+
+   expHallLogical -> SetVisAttributes(G4VisAttributes::Invisible);
+
+ }
+
+
+/////returns a calculated distance between two points
+G4double DetectorConstruction::calcDistance( G4double PosX1, G4double PosY1, G4double PosZ1, G4double PosX2, G4double PosY2, G4double PosZ2){
+
+			return (sqrt( exponentiate((PosX1-PosX2),2) + exponentiate((PosY1-PosY2),2) + exponentiate((PosZ1-PosZ2),2)));
+
+}
+
+///////////////Detector Minimum Distance Algorithm
+/////////////////////////
+
+G4double DetectorConstruction::calcMinDist(G4int A, G4int B){
+
+   G4double AnewX[2], AnewY[2], AnewZ[2], BnewX[2], BnewY[2], BnewZ[2];
+ 
+
+   G4double tempXA = x[A], tempYA = y[A], tempZA = z[A], tempXB = x[B], tempYB = y[B], tempZB = z[B];
+      //if(A==2 && B == 5)
+      //G4cout << x[A] << ' ' << x[B] << G4endl;
+
+	for(int k=1; k<30; k++){
+	  AnewX[0] = tempXA-((*mDetLength)/(exponentiate(2,k)))*sin(atan2(tempXA,tempZA));/// splitting up the detector with
+	  AnewX[1] = tempXA+((*mDetLength)/(exponentiate(2,k)))*sin(atan2(tempXA,tempZA));//// new midpoints along axes of detector 
+
+	  BnewX[0] = tempXB-((*mDetLength)/(exponentiate(2,k)))*sin(atan2(tempXB,tempZB));//each iteration brings the midpoint close
+	  BnewX[1] = tempXB+((*mDetLength)/(exponentiate(2,k)))*sin(atan2(tempXB,tempZB));/////to the ends of the detector
+
+
+
+	  AnewY[0] = tempYA-((*mDetLength)/(exponentiate(2,k)))*sin(atan2(tempYA,tempZA));  
+	  AnewY[1] = tempYA+((*mDetLength)/(exponentiate(2,k)))*sin(atan2(tempYA,tempZA));
+
+	  BnewY[0] = tempYB-((*mDetLength)/(exponentiate(2,k)))*sin(atan2(tempYB,tempZB));
+	  BnewY[1] = tempYB+((*mDetLength)/(exponentiate(2,k)))*sin(atan2(tempYB,tempZB));
+
+
+
+	  AnewZ[0]= tempZA-((*mDetLength)/(exponentiate(2,k)))*cos(atan((sqrt (pow(tempYA,2)+pow(tempXA,2)))/tempZA));
+	  AnewZ[1]= tempZA+((*mDetLength)/(exponentiate(2,k)))*cos(atan((sqrt (pow(tempYA,2)+pow(tempXA,2)))/tempZA));
+
+	  BnewZ[0]= tempZB-((*mDetLength)/(exponentiate(2,k)))*cos(atan((sqrt (pow(tempYB,2)+pow(tempXB,2)))/tempZB));
+	  BnewZ[1]= tempZB+((*mDetLength)/(exponentiate(2,k)))*cos(atan((sqrt (pow(tempYB,2)+pow(tempXB,2)))/tempZB));
+
+	G4double tempDist = 1000;
+	G4double locA[3] = {0,0,0};
+        G4double locB[3] = {0,0,0};
+
+  ////Starts the loop to determine the two midpoints with the minimum distance
+	    for(int i=0; i<2; i++){ 
+		for(int j=0; j<2; j++){
+
+			if( calcDistance(AnewX[i],AnewY[i],AnewZ[i],BnewX[j],BnewY[j],BnewZ[j]) < tempDist ) { 
+		
+					tempDist = calcDistance(AnewX[i],AnewY[i],AnewZ[i],BnewX[j],BnewY[j],BnewZ[j]);
+					locA[0] = AnewX[i];
+                                        locA[1] = AnewY[i];
+                                        locA[2] = AnewZ[i];
+                                        locB[0] = BnewX[j];
+                                        locB[1] = BnewY[j];
+                                        locB[2] = BnewZ[j];
+				}		
+		}
+
+	}
+///if the new calculated distance is shorter than the Temp distance, 
+/////the the lowest distance is stored into the new temp values
+	tempXA = locA[0];
+	tempYA = locA[1];
+	tempZA = locA[2];
+
+	tempXB = locB[0];
+	tempYB = locB[1];
+	tempZB = locB[2];
+   }
+////////////////
+/////This is where a function should go using the x,y,z values of the two points of minimum distance on axes. According to which quadrant the 2nd hit happened relative to the 1st hit detector; the two points can be projected to the surface of the cylinder using the angles of rotation of each cylinder and the radius.
+///////////////////////////////
+
+///New method: using the points on the front face of each detector and assuming they are at the same radius from the origin, find the angle between the points. Subtract the angles created by radius of each cylinder and calculate the chord between the points of closest distance.
+
+/// note: 6cm is the radius from the origin of the front faces of each detector
+double Angle = (acos( (tempXA*tempXB +tempYA*tempYB + tempZA*tempZB)/( (sqrt(tempXA*tempXA+tempYA*tempYA+tempZA*tempZA)) *(sqrt(tempXB*tempXB+tempYB*tempYB+tempZB*tempZB)) )));
+
+double radiusA = (sqrt (tempXA*tempXA + tempYA*tempYA + tempZA*tempZA));
+double radiusB = (sqrt (tempXB*tempXB + tempYB*tempYB + tempZB*tempZB));
+double lengthAB = (sqrt ( radiusA*radiusA + radiusB*radiusB - 2.0*radiusA*radiusB*cos(Angle)));
+
+double NewAngleB = (pi/2.0) - acos((-radiusA*radiusA + lengthAB*lengthAB + radiusB*radiusB)/(2.0*lengthAB*radiusB));
+double NewAngleA = NewAngleB - Angle;
+
+
+
+return (lengthAB - (mDetRadius * (cos(NewAngleA) + cos(NewAngleB)))) / cm;
+
+//return (sqrt( exponentiate((tempXA-tempXB),2) + exponentiate((tempYA-tempYB),2) + exponentiate((tempZA-tempZB),2)) );
+
+}
+
+
+void DetectorConstruction::TestCan()
+ {
+
+   G4ThreeVector   position;
+
+   G4Tubs* testCanSolid = new G4Tubs("Test Can Solid", 0.0 * cm, mDetRadius , (*mDetLength) , 0.0 * deg, 360.0 * deg);
+ //G4Tubs* testCanSolid2 = new G4Tubs("Test Can Solid", 0.0 * cm, 5 * cm, (10.0 / 2.0) * cm, 0.0 * deg, 360.0 * deg);
+
+   if (materialOfDetector == 0)
+    {
+
+      testCanLogical = new G4LogicalVolume(testCanSolid, materials ->  BC537, "Test Can Logical");
+//testCanLogical2 = new G4LogicalVolume(testCanSolid2, materials -> BC501A, "Test Can Logical");
+
+    }
+   else
+    {
+
+      if (materialOfDetector != 1)
+       {
+
+         G4cout << "ERROR: DetectorConstruction.cc - Invalid materialOfDetector, Using BC537" << G4endl;
+
+       }
+
+      testCanLogical = new G4LogicalVolume(testCanSolid, materials -> BC501A, "Test Can Logical");
+//testCanLogical2 = new G4LogicalVolume(testCanSolid2, materials -> BC537, "Test Can Logical");
+
+    }
+
+/************************************************************************************************/
+//Define the constants for the wall:
+
+
+const G4double r= 100*cm;
+const G4double r2= r + 50*cm; 
+
+const G4double h= 20*cm;  //is wall height to find number of detectors in y
+//const G4double h= 1.0 * m;
+
+const G4double separation = 7*cm;
+
+const G4double theta= pi/6;
+//const G4double theta= pi/2;  //is the opening angle to find the number of detectors in x
+/***********************************************************************************************/
+
+
+//i corresponds to the x-axis the 0.5 is so that it rounds to the nearest integer
+G4int nDetectors_x= ((theta * r / separation)+0.5); //set the number of detectors along one x loop
+
+//j corresponds to the y-axis
+G4int nDetectors_y= ((h/separation)+0.5); //set the number of detectors along one y loop
+
+G4int index=0; //index number for the detectors
+//G4double x, y, z; //coordinates of the detectors
+G4double Alpha, Beta; //for the rotation of the detectors
+
+G4ThreeVector *DetPos = new G4ThreeVector();
+G4PVPlacement *tubeDets;
+
+for (G4int j=-nDetectors_y/2; j<=nDetectors_y/2; j++) {
+   for (G4int i=-nDetectors_x/2; i<=nDetectors_x/2; i++) {
+      G4RotationMatrix rm;
+
+      x[index] = i*separation;
+      y[index] = j*separation;
+      z[index] = sqrt(r*r - (x[index])*(x[index]) - (y[index])*(y[index]));
+      //if(index == 2 )
+      //   cout << "x in det construction: " << x[index] << G4endl;
+      //if(index == 5 )
+       //  cout << "x in det contruction: " << x[index] << G4endl;
+//Creates the zigzag configuration - for normal config, comment this out and just use z=sqrt(r*r - x*x - y*y);
+    if ((i%2!=0 && j%2!=0) || (i%2==0 && j%2==0)){
+         z[index]=sqrt(r2*r2 - x[index]*x[index] - y[index]*y[index]);}
+
+     //if(index>0)
+ 
+      Alpha = -atan((y[index])/(z[index]));
+      Beta = atan((x[index])/(z[index]));
+      DetPos->set(x[index],y[index],z[index]);
+      //DetPos[0] = x[index] ;    
+      //DetPos[1] = y[index] ;
+      //DetPos[2] = z[index] ;
+
+
+
+      rm.rotateY(Beta);
+      rm.rotateX(Alpha);
+      tubeDets = new G4PVPlacement(G4Transform3D(rm,*DetPos), testCanLogical, "Test Can", expHallLogical, false, index);
+
+      index++;
+      *mNumofDets = index;
+
+      *mMinNumDist = ((*mNumofDets-1)*(*mNumofDets))/2;
+
+      cout << "j value: " << j << " i value: " << i << " X value: " << DetPos->x()
+           << " Y value: " << DetPos->y() << " Z value: " << DetPos->z()
+           << " Alpha: " << Alpha/deg << " Beta: " << Beta/deg << " Index: " << index-1 
+           << " Det Radius: " << mDetRadius << " Det Length: " << *mDetLength << endl << endl; 
+
+   }
+}
+
+///Definition of a 2d array used to "tag" each detector min. distance
+//G4double    Distances[55][55];
+G4int       count = 0;
+         for(G4int m=0; m< index; m++){
+	  for(G4int n=m+1; n< index; n++){
+  //The way the distance array is created is determined by this loop:
+/*             the mDetMinDist member variable is a pointer to a 1-d array that holds the distances.  The array is read such that:
+        mDetMinDist[0] -> distance from detector ID 0 to detector ID 1
+        mDetMinDist[1] -> distance from detector ID 0 to detector ID 2
+        mDetMinDist[2] -> distance from detector ID 0 to detector ID 3
+        mDetMinDist[3] -> distance from detector ID 0 to detector ID 4
+        mDetMinDist[4] -> distance from detector ID 0 to detector ID 5
+        mDetMinDist[5] -> distance from detector ID 0 to detector ID 6
+        mDetMinDist[6] -> distance from detector ID 0 to detector ID 7
+        mDetMinDist[7] -> distance from detector ID 0 to detector ID 8
+
+        mDetMinDist[8] -> distance from detector ID 1 to detector ID 2
+        mDetMinDist[9] -> distance from detector ID 1 to detector ID 3
+        mDetMinDist[10] -> distance from detector ID 1 to detector ID 4
+        mDetMinDist[11] -> distance from detector ID 1 to detector ID 5
+        mDetMinDist[12] -> distance from detector ID 1 to detector ID 6
+        mDetMinDist[13] -> distance from detector ID 1 to detector ID 7
+        mDetMinDist[14] -> distance from detector ID 1 to detector ID 8
+
+        mDetMinDist[15] -> distance from detector ID 2 to detector ID 3
+        mDetMinDist[16] -> distance from detector ID 2 to detector ID 4
+        mDetMinDist[17] -> distance from detector ID 2 to detector ID 5
+        mDetMinDist[18] -> distance from detector ID 2 to detector ID 6
+        mDetMinDist[19] -> distance from detector ID 2 to detector ID 7
+        mDetMinDist[20] -> distance from detector ID 2 to detector ID 8
+
+        mDetMinDist[21] -> distance from detector ID 3 to detector ID 4
+        mDetMinDist[22] -> distance from detector ID 3 to detector ID 5
+        mDetMinDist[23] -> distance from detector ID 3 to detector ID 6
+        mDetMinDist[24] -> distance from detector ID 3 to detector ID 7
+        mDetMinDist[25] -> distance from detector ID 3 to detector ID 8
+
+        mDetMinDist[26] -> distance from detector ID 4 to detector ID 5
+        mDetMinDist[27] -> distance from detector ID 4 to detector ID 6
+        mDetMinDist[28] -> distance from detector ID 4 to detector ID 7
+        mDetMinDist[29] -> distance from detector ID 4 to detector ID 8
+
+        mDetMinDist[30] -> distance from detector ID 5 to detector ID 6
+        mDetMinDist[31] -> distance from detector ID 5 to detector ID 7
+        mDetMinDist[32] -> distance from detector ID 5 to detector ID 8
+
+        mDetMinDist[33] -> distance from detector ID 6 to detector ID 7
+        mDetMinDist[34] -> distance from detector ID 6 to detector ID 8
+
+        mDetMinDist[35] -> distance from detector ID 7 to detector ID 8
+        .
+	.
+	.
+	mDetMinDist[m] -> something crazy
+*/
+              		Distances[m][n] = calcMinDist(m,n);
+		        mDetMinDist[count] = Distances[m][n];    
+ 		        count++;
+		}
+	     }
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+	/////Three Dets. Antisymmetric Detector setup
+   //Make detectors and fill their positions and the number of detectors
+/*   for(int i = 0; i<3; i++){
+
+   switch (i)
+{
+	case 0: 
+		{ y=0;
+		  z=0; 
+ 		  break;
+		}
+	case 1:
+		{ y=1;
+		  z=1;
+		  break;
+		}
+	case  2:
+		{ y=-1.5;
+		  z=1.5;
+		  break;
+		}
+}
+
+   position = G4ThreeVector(0.0 * cm, (0.0+y*15.0) * cm, (55.0+z*20.0) * cm);
+   new G4PVPlacement(0, position, testCanLogical, "Test Can", expHallLogical, false, i+1);
+   *mNumofDets = i+1;
+   mDetx[i] = position[0] / cm;
+   mDety[i] = position[1] / cm;
+   mDetz[i] = position[2] / cm;
+   
+
+   *mMinNumDist = ((*mNumofDets-1)*(*mNumofDets))/2;
+
+   }
+
+   //Find the "minimum" Distance from each detector
+   for(int i = 0; i < *mMinNumDist; i++){
+	
+	if( i == 0){	
+   mDetMinDist[i] = sqrt( pow((mDetx[i]-(mDetx[i+1])),2) + pow(( (mDety[i+1]-DetRadius)-(mDety[i]+DetRadius)),2) 
+                              + pow( ((mDetz[i]+DetLength)-( mDetz[i+1]-DetLength )),2) ) ;
+   }	
+	if( i == 1){
+   mDetMinDist[i] = sqrt( pow((mDetx[i]-(mDetx[i+1])),2) + pow(( (mDety[i+1]+DetRadius)-(mDety[i]-DetRadius)),2) 
+                              + pow( (mDetz[i]-mDetz[i+1]),2) ) ;
+}
+	if( i == 2){
+		
+   mDetMinDist[i] = sqrt( pow((mDetx[i]-(mDetx[i-2])),2) + pow( (( mDety[i-2]+DetRadius)-((fabs (mDety[i]))-DetRadius)),2) 
+                              + pow( ((mDetz[i]-DetLength)-( mDetz[i-2]+DetLength )),2) ) ;
+   }
+}
+*/
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//   position = G4ThreeVector(0.0, 15.0 * cm, 55.0 * cm);
+//   new G4PVPlacement(0, position, testCanLogical, "Test Can", expHallLogical, false, 2);
+
+   //position = G4ThreeVector(0.0, -8.9 * cm, 57.5 * cm);
+   //new G4PVPlacement(0, position, testCanLogical, "Test Can", expHallLogical, false, 3);
+
+   /*position = G4ThreeVector(8.9 * cm, 0.0, 57.5 * cm);
+   new G4PVPlacement(0, position, testCanLogical, "Test Can", expHallLogical, false, 4);
+
+   position = G4ThreeVector(-8.9 * cm, 0.0, 57.5 * cm);
+   new G4PVPlacement(0, position, testCanLogical, "Test Can", expHallLogical, false, 5);*/
+
+   G4VisAttributes* testCanAttributes = new G4VisAttributes(G4Colour::Yellow());
+   testCanAttributes -> SetForceSolid(true);
+   testCanLogical -> SetVisAttributes(testCanAttributes);
+
+ }
+
+void DetectorConstruction::Wheel(G4double edgelength)
+ {
+
+   G4ThreeVector points[8];
+
+   G4double X = (65.0 / 50.0) * 0.997 * edgelength / 2.0;
+   G4double Y = X * 2.0 * sin(DToR(60));
+   G4double Z = 65.0 * cm;
+
+   points[0] = G4ThreeVector(      0.0,        0.0, 0.0);
+   points[1] = G4ThreeVector(      0.0,        0.0,   Z);
+   points[2] = G4ThreeVector(        X,   1.108 * Y,   Z);
+   points[3] = G4ThreeVector( 1.866 * X, -0.302 * Y,   Z);
+   points[4] = G4ThreeVector(        X,         -Y,   Z);
+   points[5] = G4ThreeVector(       -X,         -Y,   Z);
+   points[6] = G4ThreeVector(-1.866 * X, -0.302 * Y,   Z);
+   points[7] = G4ThreeVector(       -X,   1.108 * Y,   Z);
+
+   G4Tet* wSolid1 = new G4Tet("W Solid 1", points[0], points[1], points[2], points[3], 0);
+   G4Tet* wSolid2 = new G4Tet("W Solid 2", points[0], points[1], points[3], points[4], 0);
+   G4Tet* wSolid3 = new G4Tet("W Solid 3", points[0], points[1], points[4], points[5], 0);
+   G4Tet* wSolid4 = new G4Tet("W Solid 4", points[0], points[1], points[5], points[6], 0);
+   G4Tet* wSolid5 = new G4Tet("W Solid 5", points[0], points[1], points[6], points[7], 0);
+   G4Tet* wSolid6 = new G4Tet("W Solid 6", points[0], points[1], points[7], points[2], 0);
+
+   G4Box* subtractionSolid = new G4Box("Subtraction Solid", 10.0 * cm, 10.0 * cm, 50.0 * cm);
+
+   G4SubtractionSolid* wheel1Solid = new G4SubtractionSolid("Wheel 1 Solid", wSolid1, subtractionSolid);
+   G4SubtractionSolid* wheel2Solid = new G4SubtractionSolid("Wheel 2 Solid", wSolid2, subtractionSolid);
+   G4SubtractionSolid* wheel3Solid = new G4SubtractionSolid("Wheel 3 Solid", wSolid3, subtractionSolid);
+   G4SubtractionSolid* wheel4Solid = new G4SubtractionSolid("Wheel 4 Solid", wSolid4, subtractionSolid);
+   G4SubtractionSolid* wheel5Solid = new G4SubtractionSolid("Wheel 5 Solid", wSolid5, subtractionSolid);
+   G4SubtractionSolid* wheel6Solid = new G4SubtractionSolid("Wheel 6 Solid", wSolid6, subtractionSolid);
+
+   if (materialOfDetector == 0)
+    {
+
+      wheel1Logical = new G4LogicalVolume(wheel1Solid, materials -> BC501A, "Wheel 1 Logical");
+      wheel2Logical = new G4LogicalVolume(wheel2Solid, materials -> BC501A, "Wheel 2 Logical");
+      wheel3Logical = new G4LogicalVolume(wheel3Solid, materials -> BC501A, "Wheel 3 Logical");
+      wheel4Logical = new G4LogicalVolume(wheel4Solid, materials -> BC501A, "Wheel 4 Logical");
+      wheel5Logical = new G4LogicalVolume(wheel5Solid, materials -> BC501A, "Wheel 5 Logical");
+      wheel6Logical = new G4LogicalVolume(wheel6Solid, materials -> BC501A, "Wheel 6 Logical");
+
+    }
+   else
+    {
+
+      if (materialOfDetector != 1)
+       {
+
+         G4cout << "ERROR: DetectorConstruction.cc - Invalid materialOfDetector, Using BC537" << G4endl;
+
+       }
+
+      wheel1Logical = new G4LogicalVolume(wheel1Solid, materials -> BC537, "Wheel 1 Logical");
+      wheel2Logical = new G4LogicalVolume(wheel2Solid, materials -> BC537, "Wheel 2 Logical");
+      wheel3Logical = new G4LogicalVolume(wheel3Solid, materials -> BC537, "Wheel 3 Logical");
+      wheel4Logical = new G4LogicalVolume(wheel4Solid, materials -> BC537, "Wheel 4 Logical");
+      wheel5Logical = new G4LogicalVolume(wheel5Solid, materials -> BC537, "Wheel 5 Logical");
+      wheel6Logical = new G4LogicalVolume(wheel6Solid, materials -> BC537, "Wheel 6 Logical");
+
+    }
+
+   new G4PVPlacement(0, G4ThreeVector(0.0, 0.0, 0.0), wheel1Logical, "Wheel 1", expHallLogical, false, 1);
+   new G4PVPlacement(0, G4ThreeVector(0.0, 0.0, 0.0), wheel2Logical, "Wheel 2", expHallLogical, false, 1);
+   new G4PVPlacement(0, G4ThreeVector(0.0, 0.0, 0.0), wheel3Logical, "Wheel 3", expHallLogical, false, 1);
+   new G4PVPlacement(0, G4ThreeVector(0.0, 0.0, 0.0), wheel4Logical, "Wheel 4", expHallLogical, false, 1);
+   new G4PVPlacement(0, G4ThreeVector(0.0, 0.0, 0.0), wheel5Logical, "Wheel 5", expHallLogical, false, 1);
+   new G4PVPlacement(0, G4ThreeVector(0.0, 0.0, 0.0), wheel6Logical, "Wheel 6", expHallLogical, false, 1);
+
+   G4VisAttributes* wheelAttributes = new G4VisAttributes(G4Colour::White());
+   wheelAttributes -> SetForceSolid(true);
+   wheel1Logical   -> SetVisAttributes(wheelAttributes);
+   wheel2Logical   -> SetVisAttributes(wheelAttributes);
+   wheel3Logical   -> SetVisAttributes(wheelAttributes);
+   wheel4Logical   -> SetVisAttributes(wheelAttributes);
+   wheel5Logical   -> SetVisAttributes(wheelAttributes);
+   wheel6Logical   -> SetVisAttributes(wheelAttributes);
+
+ }
+
+
+void DetectorConstruction::Ring(G4double edgelength)
+ {
+
+   G4ThreeVector points[8];
+
+   G4double X = (65.0 / 50.0) * 1.033 * edgelength / 2.0;
+   G4double Y = X * 2.0 * sin(DToR(60));
+   G4double Z = 65.0 * cm;
+
+   points[0] = G4ThreeVector(      0.0,       0.0, 0.0);
+   points[1] = G4ThreeVector(      0.0,       0.0,   Z);
+   points[2] = G4ThreeVector( 0.87 * X,  1.17 * Y,   Z);
+   points[3] = G4ThreeVector( 2.33 * X,  0.00 * Y,   Z);
+   points[4] = G4ThreeVector( 0.87 * X, -1.17 * Y,   Z);
+   points[5] = G4ThreeVector(-0.57 * X, -1.14 * Y,   Z);
+   points[6] = G4ThreeVector(-2.23 * X,  0.00 * Y,   Z);
+   points[7] = G4ThreeVector(-0.57 * X,  1.14 * Y,   Z);
+
+   G4Tet* rSolid1 = new G4Tet("R Solid 1", points[0], points[1], points[2], points[3], 0);
+   G4Tet* rSolid2 = new G4Tet("R Solid 2", points[0], points[1], points[3], points[4], 0);
+   G4Tet* rSolid3 = new G4Tet("R Solid 3", points[0], points[1], points[4], points[5], 0);
+   G4Tet* rSolid4 = new G4Tet("R Solid 4", points[0], points[1], points[5], points[6], 0);
+   G4Tet* rSolid5 = new G4Tet("R Solid 5", points[0], points[1], points[6], points[7], 0);
+   G4Tet* rSolid6 = new G4Tet("R Solid 6", points[0], points[1], points[7], points[2], 0);
+
+   G4Box* subtractionSolid = new G4Box("Subtraction Solid", 10.0 * cm, 10.0 * cm, 50.0 * cm);
+
+   G4SubtractionSolid* ring1Solid = new G4SubtractionSolid("Ring 1 Solid", rSolid1, subtractionSolid);
+   G4SubtractionSolid* ring2Solid = new G4SubtractionSolid("Ring 2 Solid", rSolid2, subtractionSolid);
+   G4SubtractionSolid* ring3Solid = new G4SubtractionSolid("Ring 3 Solid", rSolid3, subtractionSolid);
+   G4SubtractionSolid* ring4Solid = new G4SubtractionSolid("Ring 4 Solid", rSolid4, subtractionSolid);
+   G4SubtractionSolid* ring5Solid = new G4SubtractionSolid("Ring 5 Solid", rSolid5, subtractionSolid);
+   G4SubtractionSolid* ring6Solid = new G4SubtractionSolid("Ring 6 Solid", rSolid6, subtractionSolid);
+
+   if (materialOfDetector == 0)
+    {
+
+      ring1Logical = new G4LogicalVolume(ring1Solid, materials -> BC501A, "Ring 1 Logical");
+      ring2Logical = new G4LogicalVolume(ring2Solid, materials -> BC501A, "Ring 2 Logical");
+      ring3Logical = new G4LogicalVolume(ring3Solid, materials -> BC501A, "Ring 3 Logical");
+      ring4Logical = new G4LogicalVolume(ring4Solid, materials -> BC501A, "Ring 4 Logical");
+      ring5Logical = new G4LogicalVolume(ring5Solid, materials -> BC501A, "Ring 5 Logical");
+      ring6Logical = new G4LogicalVolume(ring6Solid, materials -> BC501A, "Ring 6 Logical");
+
+    }
+   else
+    {
+
+      if (materialOfDetector != 1)
+       {
+
+         G4cout << "ERROR: DetectorConstruction.cc - Invalid materialOfDetector, Using BC537" << G4endl;
+
+       }
+
+      ring1Logical = new G4LogicalVolume(ring1Solid, materials -> BC537, "Ring 1 Logical");
+      ring2Logical = new G4LogicalVolume(ring2Solid, materials -> BC537, "Ring 2 Logical");
+      ring3Logical = new G4LogicalVolume(ring3Solid, materials -> BC537, "Ring 3 Logical");
+      ring4Logical = new G4LogicalVolume(ring4Solid, materials -> BC537, "Ring 4 Logical");
+      ring5Logical = new G4LogicalVolume(ring5Solid, materials -> BC537, "Ring 5 Logical");
+      ring6Logical = new G4LogicalVolume(ring6Solid, materials -> BC537, "Ring 6 Logical");
+
+    }
+
+   new G4PVPlacement(0, G4ThreeVector(), ring1Logical, "Ring 1", expHallLogical, false, 1);
+   new G4PVPlacement(0, G4ThreeVector(), ring2Logical, "Ring 2", expHallLogical, false, 1);
+   new G4PVPlacement(0, G4ThreeVector(), ring3Logical, "Ring 3", expHallLogical, false, 1);
+   new G4PVPlacement(0, G4ThreeVector(), ring4Logical, "Ring 4", expHallLogical, false, 1);
+   new G4PVPlacement(0, G4ThreeVector(), ring5Logical, "Ring 5", expHallLogical, false, 1);
+   new G4PVPlacement(0, G4ThreeVector(), ring6Logical, "Ring 6", expHallLogical, false, 1);
+
+   G4VisAttributes* ringAttributes = new G4VisAttributes(G4Colour::Red());
+   ringAttributes -> SetForceSolid(true);
+   ring1Logical   -> SetVisAttributes(ringAttributes);
+   ring2Logical   -> SetVisAttributes(ringAttributes);
+   ring3Logical   -> SetVisAttributes(ringAttributes);
+   ring4Logical   -> SetVisAttributes(ringAttributes);
+   ring5Logical   -> SetVisAttributes(ringAttributes);
+   ring6Logical   -> SetVisAttributes(ringAttributes);
+
+ }
+
+
+void DetectorConstruction::Block(G4double edgelength)
+ {
+
+   G4ThreeVector points[8];
+
+   G4double X = (65.0 / 50.0) * 1.192 * edgelength / 2.0;
+   G4double Y = X * 2.0 * sin(DToR(60));
+   G4double Z = 65.0 * cm;
+
+   points[0] = G4ThreeVector(      0.0,       0.0, 0.0);
+   points[1] = G4ThreeVector(      0.0,       0.0,   Z);
+   points[2] = G4ThreeVector( 1.00 * X,  0.988 * Y,   Z);
+   points[3] = G4ThreeVector(    2 * X,       0.0,   Z);
+   points[4] = G4ThreeVector( 1.00 * X, -0.988 * Y,   Z);
+   points[5] = G4ThreeVector(-1.21 * X, -1.185 * Y,   Z);
+   points[6] = G4ThreeVector(-1.97 * X,       0.0,   Z);
+   points[7] = G4ThreeVector(-1.21 * X,  1.185 * Y,   Z);
+
+   G4Tet* bSolid1 = new G4Tet("B Solid 1", points[0], points[1], points[2], points[3], 0);
+   G4Tet* bSolid2 = new G4Tet("B Solid 2", points[0], points[1], points[3], points[4], 0);
+   G4Tet* bSolid3 = new G4Tet("B Solid 3", points[0], points[1], points[4], points[5], 0);
+   G4Tet* bSolid4 = new G4Tet("B Solid 4", points[0], points[1], points[5], points[6], 0);
+   G4Tet* bSolid5 = new G4Tet("B Solid 5", points[0], points[1], points[6], points[7], 0);
+   G4Tet* bSolid6 = new G4Tet("B Solid 6", points[0], points[1], points[7], points[2], 0);
+
+   G4Box* subtractionSolid = new G4Box("Subtraction Solid", 10.0 * cm, 10.0 * cm, 50.0 * cm);
+
+   G4SubtractionSolid* block1Solid = new G4SubtractionSolid("Block 1 Solid", bSolid1, subtractionSolid);
+   G4SubtractionSolid* block2Solid = new G4SubtractionSolid("Block 2 Solid", bSolid2, subtractionSolid);
+   G4SubtractionSolid* block3Solid = new G4SubtractionSolid("Block 3 Solid", bSolid3, subtractionSolid);
+   G4SubtractionSolid* block4Solid = new G4SubtractionSolid("Block 4 Solid", bSolid4, subtractionSolid);
+   G4SubtractionSolid* block5Solid = new G4SubtractionSolid("Block 5 Solid", bSolid5, subtractionSolid);
+   G4SubtractionSolid* block6Solid = new G4SubtractionSolid("Block 6 Solid", bSolid6, subtractionSolid);
+
+   if (materialOfDetector == 0)
+    {
+
+      block1Logical = new G4LogicalVolume(block1Solid, materials -> BC501A, "Block 1 Logical");
+      block2Logical = new G4LogicalVolume(block2Solid, materials -> BC501A, "Block 2 Logical");
+      block3Logical = new G4LogicalVolume(block3Solid, materials -> BC501A, "Block 3 Logical");
+      block4Logical = new G4LogicalVolume(block4Solid, materials -> BC501A, "Block 4 Logical");
+      block5Logical = new G4LogicalVolume(block5Solid, materials -> BC501A, "Block 5 Logical");
+      block6Logical = new G4LogicalVolume(block6Solid, materials -> BC501A, "Block 6 Logical");
+
+    }
+   else
+    {
+
+      if (materialOfDetector != 1)
+       {
+
+         G4cout << "ERROR: DetectorConstruction.cc - Invalid materialOfDetector, Using BC537" << G4endl;
+
+       }
+
+      block1Logical = new G4LogicalVolume(block1Solid, materials -> BC537, "Block 1 Logical");
+      block2Logical = new G4LogicalVolume(block2Solid, materials -> BC537, "Block 2 Logical");
+      block3Logical = new G4LogicalVolume(block3Solid, materials -> BC537, "Block 3 Logical");
+      block4Logical = new G4LogicalVolume(block4Solid, materials -> BC537, "Block 4 Logical");
+      block5Logical = new G4LogicalVolume(block5Solid, materials -> BC537, "Block 5 Logical");
+      block6Logical = new G4LogicalVolume(block6Solid, materials -> BC537, "Block 6 Logical");
+
+    }
+
+   new G4PVPlacement(0, G4ThreeVector(), block1Logical, "Block 1", expHallLogical, false, 1);
+   new G4PVPlacement(0, G4ThreeVector(), block2Logical, "Block 2", expHallLogical, false, 1);
+   new G4PVPlacement(0, G4ThreeVector(), block3Logical, "Block 3", expHallLogical, false, 1);
+   new G4PVPlacement(0, G4ThreeVector(), block4Logical, "Block 4", expHallLogical, false, 1);
+   new G4PVPlacement(0, G4ThreeVector(), block5Logical, "Block 5", expHallLogical, false, 1);
+   new G4PVPlacement(0, G4ThreeVector(), block6Logical, "Block 6", expHallLogical, false, 1);
+
+   G4VisAttributes* blockAttributes = new G4VisAttributes(G4Colour::Blue());
+   blockAttributes -> SetForceSolid(true);
+   block1Logical   -> SetVisAttributes(blockAttributes);
+   block2Logical   -> SetVisAttributes(blockAttributes);
+   block3Logical   -> SetVisAttributes(blockAttributes);
+   block4Logical   -> SetVisAttributes(blockAttributes);
+   block5Logical   -> SetVisAttributes(blockAttributes);
+   block6Logical   -> SetVisAttributes(blockAttributes);
+
+ }
+
+
+G4double DetectorConstruction::DToR(G4double angleInDegree)
+ {
+
+   return angleInDegree * M_PI / 180.0;
+
+ }
+
+
+G4double DetectorConstruction::RToD(G4double angleInRadian)
+ {
+
+   return angleInRadian * 180.0 / M_PI;
+
+ }
+
+
+
+

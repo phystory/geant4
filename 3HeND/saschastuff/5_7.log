@@ -1,0 +1,17 @@
+ Script to run Geant4 simulation
+ Script started at Fri Apr 25 17:57:13 EDT 2014
+ Script run in directory /mnt/simulations/tofmass/e14032/GEANT4/3HeND/saschastuff
+ User name: ahnt (Login name: ahnt)
+ *******************
+ Starting Geant4 run
+ *******************
+ Input parameters for run
+1
+7   5
+
+ *******************
+/mnt/misc/sw/x86_64/Debian/7/radware/05.3/bin:/mnt/misc/sw/indep/all/texlive/2013/bin/x86_64-linux:/mnt/misc/sw/x86_64/Debian/7/david/gnu/1.36a/bin:/mnt/misc/sw/x86_64/Debian/7/dawn/gnu/3.90b/bin:/mnt/misc/sw/x86_64/Debian/7/geant4/gnu/4.9.6.02/bin:/mnt/misc/sw/x86_64/Debian/7/cmake/2.8.11.1/bin:/mnt/misc/sw/x86_64/Debian/7/root/gnu/5.34.14/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:.:.:.:.:.
+/mnt/misc/sw/x86_64/Debian/7/geant4/gnu/4.9.6.02/lib:/mnt/misc/sw/x86_64/Debian/7/pythia8/gnu/8.180/lib:/mnt/misc/sw/x86_64/Debian/7/pythia6/gnu/6.4.27:/mnt/misc/sw/x86_64/Debian/7/root/gnu/5.34.14/lib:/usr/opt/daq/current/lib:/mnt/misc/sw/x86_64/Debian/7/geant4/gnu/10.00/share/Geant4-10.0.0/geant4make/lib
+Geant4 finished!
+/mnt/misc/sw/x86_64/Debian/7/radware/05.3/bin:/mnt/misc/sw/indep/all/texlive/2013/bin/x86_64-linux:/mnt/misc/sw/x86_64/Debian/7/david/gnu/1.36a/bin:/mnt/misc/sw/x86_64/Debian/7/dawn/gnu/3.90b/bin:/mnt/misc/sw/x86_64/Debian/7/geant4/gnu/4.9.6.02/bin:/mnt/misc/sw/x86_64/Debian/7/cmake/2.8.11.1/bin:/mnt/misc/sw/x86_64/Debian/7/root/gnu/5.34.14/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:.:.:.:.:.
+/mnt/misc/sw/x86_64/Debian/7/geant4/gnu/4.9.6.02/lib:/mnt/misc/sw/x86_64/Debian/7/pythia8/gnu/8.180/lib:/mnt/misc/sw/x86_64/Debian/7/pythia6/gnu/6.4.27:/mnt/misc/sw/x86_64/Debian/7/root/gnu/5.34.14/lib:/usr/opt/daq/current/lib:/mnt/misc/sw/x86_64/Debian/7/geant4/gnu/10.00/share/Geant4-10.0.0/geant4make/lib

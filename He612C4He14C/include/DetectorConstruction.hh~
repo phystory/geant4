@@ -1,0 +1,97 @@
+#ifndef DetectorConstruction_H
+#define DetectorConstruction_H 1
+
+#include "G4Box.hh"
+#include "G4Tet.hh"
+#include "G4Tubs.hh"
+#include "globals.hh"
+#include "G4Colour.hh"
+#include "G4Polyhedra.hh"
+#include "G4UnionSolid.hh"
+#include "G4PVPlacement.hh"
+#include "G4ThreeVector.hh"
+#include "G4LogicalVolume.hh"
+#include "G4VisAttributes.hh"
+#include "G4PVParameterised.hh"
+#include "G4SubtractionSolid.hh"
+#include "G4IntersectionSolid.hh"
+#include "G4VUserDetectorConstruction.hh"
+#include "G4CylindricalSurface.hh"
+
+#include "Material.hh"
+#include "treeClass.hh"
+
+
+class G4Material;
+class G4LogicalVolume;
+class G4VPhysicalVolume;
+class DetectorConstruction:public G4VUserDetectorConstruction
+ {
+
+   public:
+      DetectorConstruction(class treeClass* crosstalk);
+      virtual ~DetectorConstruction();
+      virtual G4VPhysicalVolume* Construct();
+
+   private:
+      void ExperimentalHall();
+      void Wheel(G4double edgelength);
+      void Ring(G4double edgelength);
+      void Block(G4double edgelength);
+      void TestCan();
+
+      G4double DToR(G4double angleInDegree);
+      G4double RToD(G4double angleInRadian);
+
+      G4double calcDistance(G4double ,G4double ,G4double ,G4double ,G4double ,G4double );
+      G4double calcMinDist(G4int, G4int);
+
+      G4int 	          *mNumofDets;
+      G4int  	          *mMinNumDist;
+      G4double            *x;
+      G4double            *y;
+      G4double            *z;
+      //An array of pointers that will point to the 2-d array
+      G4double            *mDetMinDist;
+      G4double            Distances[200][200];
+      G4double            *mDetLength;
+      G4double            mDetRadius;
+      G4double            pi; 
+     
+
+      G4int materialOfDetector;
+
+      G4LogicalVolume* expHallLogical;
+      G4VPhysicalVolume* expHallPhysical;
+
+      G4LogicalVolume* testCanLogical;
+
+      G4LogicalVolume* wheel1Logical;
+      G4LogicalVolume* wheel2Logical;
+      G4LogicalVolume* wheel3Logical;
+      G4LogicalVolume* wheel4Logical;
+      G4LogicalVolume* wheel5Logical;
+      G4LogicalVolume* wheel6Logical;
+
+      G4LogicalVolume* ring1Logical;
+      G4LogicalVolume* ring2Logical;
+      G4LogicalVolume* ring3Logical;
+      G4LogicalVolume* ring4Logical;
+      G4LogicalVolume* ring5Logical;
+      G4LogicalVolume* ring6Logical;
+
+      G4LogicalVolume* block1Logical;
+      G4LogicalVolume* block2Logical;
+      G4LogicalVolume* block3Logical;
+      G4LogicalVolume* block4Logical;
+      G4LogicalVolume* block5Logical;
+      G4LogicalVolume* block6Logical;
+
+      Material* materials;
+
+ };
+
+#endif
+
+
+

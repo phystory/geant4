@@ -1,0 +1,51 @@
+# ----------------
+# Verbose Settings
+# ----------------
+#/control/verbose 2
+#/run/verbose 1
+#/hits/verbose 0
+#/tracking/verbose 2
+
+/control/verbose 0
+/run/verbose 0
+/tracking/verbose 1
+#/tracking/verbose 0
+
+# ----------------
+# Beam Characteristics
+# ----------------
+# Change primary particle
+#/gun/particle neutron
+#/gun/particle geantino
+#/gun/energy 1 MeV
+
+# Begin simulation
+/run/beamOn 20
+#/run/beamOn 100000
+
+#/gun/energy 1 MeV
+#/run/beamOn 100000
+#/gun/energy 2 MeV
+#/run/beamOn 100000
+#/gun/energy 3 MeV
+#/run/beamOn 100000
+#/gun/energy 4 MeV
+#/run/beamOn 100000
+#/gun/energy 5 MeV
+#/run/beamOn 100000
+#/gun/energy 6 MeV
+#/run/beamOn 100000
+#/gun/energy 7 MeV
+#/run/beamOn 100000
+#/gun/energy 8 MeV
+#/run/beamOn 100000
+#/gun/energy 9 MeV
+#/run/beamOn 100000
+/gun/energy 10 MeV
+#/run/beamOn 100000
+
+# Exit simulation
+exit
+
+
+

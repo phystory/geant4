@@ -1,0 +1,85 @@
+//
+// ********************************************************************
+// * License and Disclaimer                                           *
+// *                                                                  *
+// * The  Geant4 software  is  copyright of the Copyright Holders  of *
+// * the Geant4 Collaboration.  It is provided  under  the terms  and *
+// * conditions of the Geant4 Software License,  included in the file *
+// * LICENSE and available at  http://cern.ch/geant4/license .  These *
+// * include a list of copyright holders.                             *
+// *                                                                  *
+// * Neither the authors of this software system, nor their employing *
+// * institutes,nor the agencies providing financial support for this *
+// * work  make  any representation or  warranty, express or implied, *
+// * regarding  this  software system or assume any liability for its *
+// * use.  Please see the license in the file  LICENSE  and URL above *
+// * for the full disclaimer and the limitation of liability.         *
+// *                                                                  *
+// * This  code  implementation is the result of  the  scientific and *
+// * technical work of the GEANT4 collaboration.                      *
+// * By using,  copying,  modifying or  distributing the software (or *
+// * any work based  on the software)  you  agree  to acknowledge its *
+// * use  in  resulting  scientific  publications,  and indicate your *
+// * acceptance of all terms of the Geant4 Software license.          *
+// ********************************************************************
+//
+
+// Variables Parameters
+
+// Number of Helium-Tubes
+
+  numberTubes= 4;
+
+
+// Radius of circle described by Helium-Tubes
+
+  Radius = 50.0*cm;
+
+
+// Fixed Parameters
+
+
+// Dimensions Target Hall
+
+ TargetHall_x = 5*m;
+ TargetHall_y = 5*m;
+ TargetHall_z = 5*m;
+
+// Dimensions Paraffin Block
+
+ ParaffinBlock_x = 1*m;
+ ParaffinBlock_y = 1*m;
+ ParaffinBlock_z = 1*m;
+
+// Dimensions Aluminum Tubes sourrounding the 3He-Tubes
+
+ innerRadiusOfAlTube = 2.6594*cm;
+ outerRadiusOfAlTube = 2.7559*cm;
+ heightOfAlTube = 12.7*cm;
+ startAngleOfAlTube = 0.*deg;
+ spanningAngleOfAlTube = 360.*deg;
+
+// Dimension 3-Helium Tubes
+
+ innerRadiusOfHeTube = 0.0*cm;
+ outerRadiusOfHeTube = innerRadiusOfAlTube-0.02*cm;
+ heightOfHeTube = 12.7*cm;
+ startAngleOfHeTube = 0.*deg;
+ spanningAngleOfHeTube = 360.*deg;
+
+// Dimensions Outer Beam Pipe
+
+ innerRadiusOfBeamPipeOuter = 5.08*cm;
+ outerRadiusOfBeamPipeOuter = 5.715*cm;
+ heightOfBeamPipeOuter = ParaffinBlock_z/2;
+ startAngleOfBeamPipeOuter = 0.*deg;
+ spanningAngleOfBeamPipeOuter = 360.*deg;
+
+// Dimensions Inner Beam Pipe
+
+ innerRadiusOfBeamPipeInner = 0.0*cm;
+ outerRadiusOfBeamPipeInner = innerRadiusOfBeamPipeOuter-0.02*cm;
+ heightOfBeamPipeInner = ParaffinBlock_z/2;
+ startAngleOfBeamPipeInner = 0.*deg;
+ spanningAngleOfBeamPipeInner = 360.*deg;
+

@@ -1,0 +1,71 @@
+#!/bin/csh
+#set verbose
+
+#module load geant/4.9.6.02
+#module load root/5.34.14
+
+echo -n "Please type in the minimal Radius :"
+set  RadiusMin = $<
+echo -n "Please type in the maximal Radius :"
+set  RadiusMax = $<
+echo -n "Please type in the number of Tubes :"
+set  NumberOfTubes = $<
+echo -n "Please type in step size :"
+set  StepSize = $<
+
+set currentRadius = $RadiusMin
+set filename = storedata
+set underline = _
+
+set loopvarnom = `echo $RadiusMax-$RadiusMin |bc`
+set loopvardenom = `echo $StepSize |bc`
+set loopvar = `echo $loopvarnom/$loopvardenom |bc`
+set i = 0
+
+while ( "$i" <= "$loopvar"  )
+  
+   set logfilename = $NumberOfTubes$underline$currentRadius.log
+
+   echo \ "Script to run Geant4 simulation" > $logfilename
+
+   echo \ "Script started at `date`" >> $logfilename
+
+   echo \ "Script run in directory `pwd`" >> $logfilename
+
+   echo \ "User name: $USER (Login name: $LOGNAME)" >> $logfilename
+
+   echo \ "*******************" >> $logfilename
+
+   echo \ "Starting Geant4 run" >> $logfilename
+
+   echo \ "*******************" >> $logfilename
+
+   echo \ "Input parameters for run" >> $logfilename
+
+   ./run $currentRadius $NumberOfTubes
+
+   cat "DetectorParameter.dat" >> $logfilename
+   
+   echo \ "*******************" >> $logfilename	
+
+   echo $PATH  >> $logfilename
+
+   echo $LD_LIBRARY_PATH >> $logfilename
+ 
+   nohup ./bin/Linux-g++/ndetector >> $logfilename && cp "-rf" "G4data/storedata.root" "G4data/storedata$underline$NumberOfTubes$underline$currentRadius.root"
+  
+   echo "Geant4 finished!" >> $logfilename  
+
+   echo $PATH  >> $logfilename
+
+   echo $LD_LIBRARY_PATH >> $logfilename
+
+set newRadius = `echo $currentRadius + $StepSize |bc`
+
+   set currentRadius = $newRadius 
+   set i = `echo $i + 1 |bc`
+
+end
+
+
+exit 0

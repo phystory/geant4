@@ -1,0 +1,25 @@
+##G4.PRIM-FORMAT-2.4
+/BoundingBox       -1039.23048       -1039.23048       -1039.23048        1039.23048        1039.23048        1039.23048
+!SetCamera
+!OpenDevice
+!BeginModeling
+/ColorRGB                 0                 0                 1
+/ForceWireframe  0
+/Origin                 0                 0                 0
+/BaseVector                 1                 0                 0                 0                 1                 0
+/Polyline
+/PLVertex              -600                 0                 0
+/PLVertex               600                 0                 0
+/EndPolyline
+/ColorRGB                 1                 1                 0
+/Origin                 0                 0                 0
+/BaseVector                 1                 0                 0                 0                 1                 0
+/MarkCircle2DS              -600                 0                 0               0.5
+/ColorRGB                 1                 1                 0
+/Origin                 0                 0                 0
+/BaseVector                 1                 0                 0                 0                 1                 0
+/MarkCircle2DS               600                 0                 0               0.5
+#--------------------
+!EndModeling
+!DrawAll
+!CloseDevice

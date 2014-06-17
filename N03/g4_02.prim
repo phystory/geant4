@@ -1,0 +1,949 @@
+##G4.PRIM-FORMAT-2.4
+/BoundingBox       -1039.23048       -1039.23048       -1039.23048        1039.23048        1039.23048        1039.23048
+!SetCamera
+!OpenDevice
+!BeginModeling
+/ColorRGB                 1                 0                 0
+/ForceWireframe  0
+/Origin                 0                 0                 0
+/BaseVector                 1                 0                 0                 0                 1                 0
+/Polyhedron
+/Vertex                92                 0                -1
+/Vertex                92       0.258819045      -0.965925826
+/Vertex                92               0.5      -0.866025404
+/Vertex                92       0.707106781      -0.707106781
+/Vertex                92       0.866025404              -0.5
+/Vertex                92       0.965925826      -0.258819045
+/Vertex                92                 1    2.51044303e-15
+/Vertex                92       0.965925826       0.258819045
+/Vertex                92       0.866025404               0.5
+/Vertex                92       0.707106781       0.707106781
+/Vertex                92               0.5       0.866025404
+/Vertex                92       0.258819045       0.965925826
+/Vertex                92    1.22460635e-16                 1
+/Vertex                92      -0.258819045       0.965925826
+/Vertex                92              -0.5       0.866025404
+/Vertex                92      -0.707106781       0.707106781
+/Vertex                92      -0.866025404               0.5
+/Vertex                92      -0.965925826       0.258819045
+/Vertex                92                -1     2.7553643e-15
+/Vertex                92      -0.965925826      -0.258819045
+/Vertex                92      -0.866025404              -0.5
+/Vertex                92      -0.707106781      -0.707106781
+/Vertex                92              -0.5      -0.866025404
+/Vertex                92      -0.258819045      -0.965925826
+/Vertex                 0                 0                -1
+/Vertex                 0       0.258819045      -0.965925826
+/Vertex                 0               0.5      -0.866025404
+/Vertex                 0       0.707106781      -0.707106781
+/Vertex                 0       0.866025404              -0.5
+/Vertex                 0       0.965925826      -0.258819045
+/Vertex                 0                 1    -3.1227462e-15
+/Vertex                 0       0.965925826       0.258819045
+/Vertex                 0       0.866025404               0.5
+/Vertex                 0       0.707106781       0.707106781
+/Vertex                 0               0.5       0.866025404
+/Vertex                 0       0.258819045       0.965925826
+/Vertex                 0    1.22460635e-16                 1
+/Vertex                 0      -0.258819045       0.965925826
+/Vertex                 0              -0.5       0.866025404
+/Vertex                 0      -0.707106781       0.707106781
+/Vertex                 0      -0.866025404               0.5
+/Vertex                 0      -0.965925826       0.258819045
+/Vertex                 0                -1   -2.87782493e-15
+/Vertex                 0      -0.965925826      -0.258819045
+/Vertex                 0      -0.866025404              -0.5
+/Vertex                 0      -0.707106781      -0.707106781
+/Vertex                 0              -0.5      -0.866025404
+/Vertex                 0      -0.258819045      -0.965925826
+/Vertex                92                 0    2.57167334e-15
+/Vertex                 0                 0   -3.06151588e-15
+/Facet  1  25  26  2
+/Facet  2  26  27  3
+/Facet  3  27  28  4
+/Facet  4  28  29  5
+/Facet  5  29  30  6
+/Facet  6  30  31  7
+/Facet  7  31  32  8
+/Facet  8  32  33  9
+/Facet  9  33  34  10
+/Facet  10  34  35  11
+/Facet  11  35  36  12
+/Facet  12  36  37  13
+/Facet  13  37  38  14
+/Facet  14  38  39  15
+/Facet  15  39  40  16
+/Facet  16  40  41  17
+/Facet  17  41  42  18
+/Facet  18  42  43  19
+/Facet  19  43  44  20
+/Facet  20  44  45  21
+/Facet  21  45  46  22
+/Facet  22  46  47  23
+/Facet  23  47  48  24
+/Facet  24  48  25  1
+/Facet  49  1  2
+/Facet  49  2  3
+/Facet  49  3  4
+/Facet  49  4  5
+/Facet  49  5  6
+/Facet  49  6  7
+/Facet  49  7  8
+/Facet  49  8  9
+/Facet  49  9  10
+/Facet  49  10  11
+/Facet  49  11  12
+/Facet  49  12  13
+/Facet  49  13  14
+/Facet  49  14  15
+/Facet  49  15  16
+/Facet  49  16  17
+/Facet  49  17  18
+/Facet  49  18  19
+/Facet  49  19  20
+/Facet  49  20  21
+/Facet  49  21  22
+/Facet  49  22  23
+/Facet  49  23  24
+/Facet  49  24  1
+/Facet  25  50  26
+/Facet  26  50  27
+/Facet  27  50  28
+/Facet  28  50  29
+/Facet  29  50  30
+/Facet  30  50  31
+/Facet  31  50  32
+/Facet  32  50  33
+/Facet  33  50  34
+/Facet  34  50  35
+/Facet  35  50  36
+/Facet  36  50  37
+/Facet  37  50  38
+/Facet  38  50  39
+/Facet  39  50  40
+/Facet  40  50  41
+/Facet  41  50  42
+/Facet  42  50  43
+/Facet  43  50  44
+/Facet  44  50  45
+/Facet  45  50  46
+/Facet  46  50  47
+/Facet  47  50  48
+/Facet  48  50  25
+/EndPolyhedron
+/ColorRGB                 1                 0                 0
+/ForceWireframe  0
+/Origin                 0                 0                 0
+/BaseVector                 1                 0                 0                 0                 1                 0
+/Polyhedron
+/Vertex                92                 0    2.57167334e-15
+/Vertex                88                 0                -8
+/Vertex               100                 0    3.06151588e-15
+/Vertex                92                 0    2.57167334e-15
+/Vertex                88         1.9895191       -7.74866529
+/Vertex               100                 0    3.06151588e-15
+/Vertex                92                 0    2.57167334e-15
+/Vertex                88        3.85402939       -7.01045344
+/Vertex               100                 0    3.06151588e-15
+/Vertex                92                 0    2.57167334e-15
+/Vertex                88        5.47637685       -5.83174902
+/Vertex               100                 0    3.06151588e-15
+/Vertex                92                 0    2.57167334e-15
+/Vertex                88         6.7546234       -4.28661436
+/Vertex               100                 0    3.06151588e-15
+/Vertex                92                 0    2.57167334e-15
+/Vertex                88        7.60845213       -2.47213595
+/Vertex               100                 0    3.06151588e-15
+/Vertex                92                 0    2.57167334e-15
+/Vertex                88        7.98421383      -0.502324156
+/Vertex               100                 0    3.06151588e-15
+/Vertex                92                 0    2.57167334e-15
+/Vertex                88        7.85829801        1.49905052
+/Vertex               100                 0    3.06151588e-15
+/Vertex                92                 0    2.57167334e-15
+/Vertex                88        7.23861642        3.40623433
+/Vertex               100                 0    3.06151588e-15
+/Vertex                92                 0    2.57167334e-15
+/Vertex                88        6.16410594        5.09939192
+/Vertex               100                 0    3.06151588e-15
+/Vertex                92                 0    2.57167334e-15
+/Vertex                88        4.70228202        6.47213595
+/Vertex               100                 0    3.06151588e-15
+/Vertex                92                 0    2.57167334e-15
+/Vertex                88        2.94499642        7.43821189
+/Vertex               100                 0    3.06151588e-15
+/Vertex                92                 0    2.57167334e-15
+/Vertex                88        1.00266587        7.93691761
+/Vertex               100                 0    3.06151588e-15
+/Vertex                92                 0    2.57167334e-15
+/Vertex                88       -1.00266587        7.93691761
+/Vertex               100                 0    3.06151588e-15
+/Vertex                92                 0    2.57167334e-15
+/Vertex                88       -2.94499642        7.43821189
+/Vertex               100                 0    3.06151588e-15
+/Vertex                92                 0    2.57167334e-15
+/Vertex                88       -4.70228202        6.47213595
+/Vertex               100                 0    3.06151588e-15
+/Vertex                92                 0    2.57167334e-15
+/Vertex                88       -6.16410594        5.09939192
+/Vertex               100                 0    3.06151588e-15
+/Vertex                92                 0    2.57167334e-15
+/Vertex                88       -7.23861642        3.40623433
+/Vertex               100                 0    3.06151588e-15
+/Vertex                92                 0    2.57167334e-15
+/Vertex                88       -7.85829801        1.49905052
+/Vertex               100                 0    3.06151588e-15
+/Vertex                92                 0    2.57167334e-15
+/Vertex                88       -7.98421383      -0.502324156
+/Vertex               100                 0    3.06151588e-15
+/Vertex                92                 0    2.57167334e-15
+/Vertex                88       -7.60845213       -2.47213595
+/Vertex               100                 0    3.06151588e-15
+/Vertex                92                 0    2.57167334e-15
+/Vertex                88        -6.7546234       -4.28661436
+/Vertex               100                 0    3.06151588e-15
+/Vertex                92                 0    2.57167334e-15
+/Vertex                88       -5.47637685       -5.83174902
+/Vertex               100                 0    3.06151588e-15
+/Vertex                92                 0    2.57167334e-15
+/Vertex                88       -3.85402939       -7.01045344
+/Vertex               100                 0    3.06151588e-15
+/Vertex                92                 0    2.57167334e-15
+/Vertex                88        -1.9895191       -7.74866529
+/Vertex               100                 0    3.06151588e-15
+/Facet  1  4  5  2
+/Facet  2  5  6  3
+/Facet  3  6  4  1
+/Facet  4  7  8  5
+/Facet  5  8  9  6
+/Facet  6  9  7  4
+/Facet  7  10  11  8
+/Facet  8  11  12  9
+/Facet  9  12  10  7
+/Facet  10  13  14  11
+/Facet  11  14  15  12
+/Facet  12  15  13  10
+/Facet  13  16  17  14
+/Facet  14  17  18  15
+/Facet  15  18  16  13
+/Facet  16  19  20  17
+/Facet  17  20  21  18
+/Facet  18  21  19  16
+/Facet  19  22  23  20
+/Facet  20  23  24  21
+/Facet  21  24  22  19
+/Facet  22  25  26  23
+/Facet  23  26  27  24
+/Facet  24  27  25  22
+/Facet  25  28  29  26
+/Facet  26  29  30  27
+/Facet  27  30  28  25
+/Facet  28  31  32  29
+/Facet  29  32  33  30
+/Facet  30  33  31  28
+/Facet  31  34  35  32
+/Facet  32  35  36  33
+/Facet  33  36  34  31
+/Facet  34  37  38  35
+/Facet  35  38  39  36
+/Facet  36  39  37  34
+/Facet  37  40  41  38
+/Facet  38  41  42  39
+/Facet  39  42  40  37
+/Facet  40  43  44  41
+/Facet  41  44  45  42
+/Facet  42  45  43  40
+/Facet  43  46  47  44
+/Facet  44  47  48  45
+/Facet  45  48  46  43
+/Facet  46  49  50  47
+/Facet  47  50  51  48
+/Facet  48  51  49  46
+/Facet  49  52  53  50
+/Facet  50  53  54  51
+/Facet  51  54  52  49
+/Facet  52  55  56  53
+/Facet  53  56  57  54
+/Facet  54  57  55  52
+/Facet  55  58  59  56
+/Facet  56  59  60  57
+/Facet  57  60  58  55
+/Facet  58  61  62  59
+/Facet  59  62  63  60
+/Facet  60  63  61  58
+/Facet  61  64  65  62
+/Facet  62  65  66  63
+/Facet  63  66  64  61
+/Facet  64  67  68  65
+/Facet  65  68  69  66
+/Facet  66  69  67  64
+/Facet  67  70  71  68
+/Facet  68  71  72  69
+/Facet  69  72  70  67
+/Facet  70  73  74  71
+/Facet  71  74  75  72
+/Facet  72  75  73  70
+/Facet  73  1  2  74
+/Facet  74  2  3  75
+/Facet  75  3  1  73
+/EndPolyhedron
+/ColorRGB                 1                 0                 0
+/Origin                 0                 0                 0
+/BaseVector                 1                 0                 0                 0                 1                 0
+/MarkText2DS               105                0                0               10                0                0 x
+/ColorRGB                 1                 0                 0
+/Origin                 0                 0                 0
+/BaseVector                 1                 0                 0                 0                 1                 0
+/MarkText2DS                80                0                0               10                5                5 10 cm 
+/ColorRGB                 0                 1                 0
+/ForceWireframe  0
+/Origin                 0                 0                 0
+/BaseVector                 1                 0                 0                 0                 1                 0
+/Polyhedron
+/Vertex    2.57167334e-15                92                -1
+/Vertex      -0.258819045                92      -0.965925826
+/Vertex              -0.5                92      -0.866025404
+/Vertex      -0.707106781                92      -0.707106781
+/Vertex      -0.866025404                92              -0.5
+/Vertex      -0.965925826                92      -0.258819045
+/Vertex                -1                92    2.51044303e-15
+/Vertex      -0.965925826                92       0.258819045
+/Vertex      -0.866025404                92               0.5
+/Vertex      -0.707106781                92       0.707106781
+/Vertex              -0.5                92       0.866025404
+/Vertex      -0.258819045                92       0.965925826
+/Vertex    2.44921271e-15                92                 1
+/Vertex       0.258819045                92       0.965925826
+/Vertex               0.5                92       0.866025404
+/Vertex       0.707106781                92       0.707106781
+/Vertex       0.866025404                92               0.5
+/Vertex       0.965925826                92       0.258819045
+/Vertex                 1                92     2.7553643e-15
+/Vertex       0.965925826                92      -0.258819045
+/Vertex       0.866025404                92              -0.5
+/Vertex       0.707106781                92      -0.707106781
+/Vertex               0.5                92      -0.866025404
+/Vertex       0.258819045                92      -0.965925826
+/Vertex   -3.06151588e-15                 0                -1
+/Vertex      -0.258819045                 0      -0.965925826
+/Vertex              -0.5                 0      -0.866025404
+/Vertex      -0.707106781                 0      -0.707106781
+/Vertex      -0.866025404                 0              -0.5
+/Vertex      -0.965925826                 0      -0.258819045
+/Vertex                -1                 0    -3.1227462e-15
+/Vertex      -0.965925826                 0       0.258819045
+/Vertex      -0.866025404                 0               0.5
+/Vertex      -0.707106781                 0       0.707106781
+/Vertex              -0.5                 0       0.866025404
+/Vertex      -0.258819045                 0       0.965925826
+/Vertex   -3.18397652e-15                 0                 1
+/Vertex       0.258819045                 0       0.965925826
+/Vertex               0.5                 0       0.866025404
+/Vertex       0.707106781                 0       0.707106781
+/Vertex       0.866025404                 0               0.5
+/Vertex       0.965925826                 0       0.258819045
+/Vertex                 1                 0   -2.87782493e-15
+/Vertex       0.965925826                 0      -0.258819045
+/Vertex       0.866025404                 0              -0.5
+/Vertex       0.707106781                 0      -0.707106781
+/Vertex               0.5                 0      -0.866025404
+/Vertex       0.258819045                 0      -0.965925826
+/Vertex    2.57167334e-15                92    2.57167334e-15
+/Vertex   -3.06151588e-15                 0   -3.06151588e-15
+/Facet  1  25  26  2
+/Facet  2  26  27  3
+/Facet  3  27  28  4
+/Facet  4  28  29  5
+/Facet  5  29  30  6
+/Facet  6  30  31  7
+/Facet  7  31  32  8
+/Facet  8  32  33  9
+/Facet  9  33  34  10
+/Facet  10  34  35  11
+/Facet  11  35  36  12
+/Facet  12  36  37  13
+/Facet  13  37  38  14
+/Facet  14  38  39  15
+/Facet  15  39  40  16
+/Facet  16  40  41  17
+/Facet  17  41  42  18
+/Facet  18  42  43  19
+/Facet  19  43  44  20
+/Facet  20  44  45  21
+/Facet  21  45  46  22
+/Facet  22  46  47  23
+/Facet  23  47  48  24
+/Facet  24  48  25  1
+/Facet  49  1  2
+/Facet  49  2  3
+/Facet  49  3  4
+/Facet  49  4  5
+/Facet  49  5  6
+/Facet  49  6  7
+/Facet  49  7  8
+/Facet  49  8  9
+/Facet  49  9  10
+/Facet  49  10  11
+/Facet  49  11  12
+/Facet  49  12  13
+/Facet  49  13  14
+/Facet  49  14  15
+/Facet  49  15  16
+/Facet  49  16  17
+/Facet  49  17  18
+/Facet  49  18  19
+/Facet  49  19  20
+/Facet  49  20  21
+/Facet  49  21  22
+/Facet  49  22  23
+/Facet  49  23  24
+/Facet  49  24  1
+/Facet  25  50  26
+/Facet  26  50  27
+/Facet  27  50  28
+/Facet  28  50  29
+/Facet  29  50  30
+/Facet  30  50  31
+/Facet  31  50  32
+/Facet  32  50  33
+/Facet  33  50  34
+/Facet  34  50  35
+/Facet  35  50  36
+/Facet  36  50  37
+/Facet  37  50  38
+/Facet  38  50  39
+/Facet  39  50  40
+/Facet  40  50  41
+/Facet  41  50  42
+/Facet  42  50  43
+/Facet  43  50  44
+/Facet  44  50  45
+/Facet  45  50  46
+/Facet  46  50  47
+/Facet  47  50  48
+/Facet  48  50  25
+/EndPolyhedron
+/ColorRGB                 0                 1                 0
+/ForceWireframe  0
+/Origin                 0                 0                 0
+/BaseVector                 1                 0                 0                 0                 1                 0
+/Polyhedron
+/Vertex    2.57167334e-15                92    2.57167334e-15
+/Vertex    2.32675207e-15                88                -8
+/Vertex    3.06151588e-15               100    3.06151588e-15
+/Vertex    2.57167334e-15                92    2.57167334e-15
+/Vertex        -1.9895191                88       -7.74866529
+/Vertex    3.06151588e-15               100    3.06151588e-15
+/Vertex    2.57167334e-15                92    2.57167334e-15
+/Vertex       -3.85402939                88       -7.01045344
+/Vertex    3.06151588e-15               100    3.06151588e-15
+/Vertex    2.57167334e-15                92    2.57167334e-15
+/Vertex       -5.47637685                88       -5.83174902
+/Vertex    3.06151588e-15               100    3.06151588e-15
+/Vertex    2.57167334e-15                92    2.57167334e-15
+/Vertex        -6.7546234                88       -4.28661436
+/Vertex    3.06151588e-15               100    3.06151588e-15
+/Vertex    2.57167334e-15                92    2.57167334e-15
+/Vertex       -7.60845213                88       -2.47213595
+/Vertex    3.06151588e-15               100    3.06151588e-15
+/Vertex    2.57167334e-15                92    2.57167334e-15
+/Vertex       -7.98421383                88      -0.502324156
+/Vertex    3.06151588e-15               100    3.06151588e-15
+/Vertex    2.57167334e-15                92    2.57167334e-15
+/Vertex       -7.85829801                88        1.49905052
+/Vertex    3.06151588e-15               100    3.06151588e-15
+/Vertex    2.57167334e-15                92    2.57167334e-15
+/Vertex       -7.23861642                88        3.40623433
+/Vertex    3.06151588e-15               100    3.06151588e-15
+/Vertex    2.57167334e-15                92    2.57167334e-15
+/Vertex       -6.16410594                88        5.09939192
+/Vertex    3.06151588e-15               100    3.06151588e-15
+/Vertex    2.57167334e-15                92    2.57167334e-15
+/Vertex       -4.70228202                88        6.47213595
+/Vertex    3.06151588e-15               100    3.06151588e-15
+/Vertex    2.57167334e-15                92    2.57167334e-15
+/Vertex       -2.94499642                88        7.43821189
+/Vertex    3.06151588e-15               100    3.06151588e-15
+/Vertex    2.57167334e-15                92    2.57167334e-15
+/Vertex       -1.00266587                88        7.93691761
+/Vertex    3.06151588e-15               100    3.06151588e-15
+/Vertex    2.57167334e-15                92    2.57167334e-15
+/Vertex        1.00266587                88        7.93691761
+/Vertex    3.06151588e-15               100    3.06151588e-15
+/Vertex    2.57167334e-15                92    2.57167334e-15
+/Vertex        2.94499642                88        7.43821189
+/Vertex    3.06151588e-15               100    3.06151588e-15
+/Vertex    2.57167334e-15                92    2.57167334e-15
+/Vertex        4.70228202                88        6.47213595
+/Vertex    3.06151588e-15               100    3.06151588e-15
+/Vertex    2.57167334e-15                92    2.57167334e-15
+/Vertex        6.16410594                88        5.09939192
+/Vertex    3.06151588e-15               100    3.06151588e-15
+/Vertex    2.57167334e-15                92    2.57167334e-15
+/Vertex        7.23861642                88        3.40623433
+/Vertex    3.06151588e-15               100    3.06151588e-15
+/Vertex    2.57167334e-15                92    2.57167334e-15
+/Vertex        7.85829801                88        1.49905052
+/Vertex    3.06151588e-15               100    3.06151588e-15
+/Vertex    2.57167334e-15                92    2.57167334e-15
+/Vertex        7.98421383                88      -0.502324156
+/Vertex    3.06151588e-15               100    3.06151588e-15
+/Vertex    2.57167334e-15                92    2.57167334e-15
+/Vertex        7.60845213                88       -2.47213595
+/Vertex    3.06151588e-15               100    3.06151588e-15
+/Vertex    2.57167334e-15                92    2.57167334e-15
+/Vertex         6.7546234                88       -4.28661436
+/Vertex    3.06151588e-15               100    3.06151588e-15
+/Vertex    2.57167334e-15                92    2.57167334e-15
+/Vertex        5.47637685                88       -5.83174902
+/Vertex    3.06151588e-15               100    3.06151588e-15
+/Vertex    2.57167334e-15                92    2.57167334e-15
+/Vertex        3.85402939                88       -7.01045344
+/Vertex    3.06151588e-15               100    3.06151588e-15
+/Vertex    2.57167334e-15                92    2.57167334e-15
+/Vertex         1.9895191                88       -7.74866529
+/Vertex    3.06151588e-15               100    3.06151588e-15
+/Facet  1  4  5  2
+/Facet  2  5  6  3
+/Facet  3  6  4  1
+/Facet  4  7  8  5
+/Facet  5  8  9  6
+/Facet  6  9  7  4
+/Facet  7  10  11  8
+/Facet  8  11  12  9
+/Facet  9  12  10  7
+/Facet  10  13  14  11
+/Facet  11  14  15  12
+/Facet  12  15  13  10
+/Facet  13  16  17  14
+/Facet  14  17  18  15
+/Facet  15  18  16  13
+/Facet  16  19  20  17
+/Facet  17  20  21  18
+/Facet  18  21  19  16
+/Facet  19  22  23  20
+/Facet  20  23  24  21
+/Facet  21  24  22  19
+/Facet  22  25  26  23
+/Facet  23  26  27  24
+/Facet  24  27  25  22
+/Facet  25  28  29  26
+/Facet  26  29  30  27
+/Facet  27  30  28  25
+/Facet  28  31  32  29
+/Facet  29  32  33  30
+/Facet  30  33  31  28
+/Facet  31  34  35  32
+/Facet  32  35  36  33
+/Facet  33  36  34  31
+/Facet  34  37  38  35
+/Facet  35  38  39  36
+/Facet  36  39  37  34
+/Facet  37  40  41  38
+/Facet  38  41  42  39
+/Facet  39  42  40  37
+/Facet  40  43  44  41
+/Facet  41  44  45  42
+/Facet  42  45  43  40
+/Facet  43  46  47  44
+/Facet  44  47  48  45
+/Facet  45  48  46  43
+/Facet  46  49  50  47
+/Facet  47  50  51  48
+/Facet  48  51  49  46
+/Facet  49  52  53  50
+/Facet  50  53  54  51
+/Facet  51  54  52  49
+/Facet  52  55  56  53
+/Facet  53  56  57  54
+/Facet  54  57  55  52
+/Facet  55  58  59  56
+/Facet  56  59  60  57
+/Facet  57  60  58  55
+/Facet  58  61  62  59
+/Facet  59  62  63  60
+/Facet  60  63  61  58
+/Facet  61  64  65  62
+/Facet  62  65  66  63
+/Facet  63  66  64  61
+/Facet  64  67  68  65
+/Facet  65  68  69  66
+/Facet  66  69  67  64
+/Facet  67  70  71  68
+/Facet  68  71  72  69
+/Facet  69  72  70  67
+/Facet  70  73  74  71
+/Facet  71  74  75  72
+/Facet  72  75  73  70
+/Facet  73  1  2  74
+/Facet  74  2  3  75
+/Facet  75  3  1  73
+/EndPolyhedron
+/ColorRGB                 0                 1                 0
+/Origin                 0                 0                 0
+/BaseVector                 1                 0                 0                 0                 1                 0
+/MarkText2DS                 0              105                0               10                0                0 y
+/ColorRGB                 0                 1                 0
+/Origin                 0                 0                 0
+/BaseVector                 1                 0                 0                 0                 1                 0
+/MarkText2DS                 0               80                0               10                5                5 10 cm 
+/ColorRGB                 0                 0                 1
+/ForceWireframe  0
+/Origin                 0                 0                 0
+/BaseVector                 1                 0                 0                 0                 1                 0
+/Polyhedron
+/Vertex                 1                 0                92
+/Vertex       0.965925826       0.258819045                92
+/Vertex       0.866025404               0.5                92
+/Vertex       0.707106781       0.707106781                92
+/Vertex               0.5       0.866025404                92
+/Vertex       0.258819045       0.965925826                92
+/Vertex    6.12303177e-17                 1                92
+/Vertex      -0.258819045       0.965925826                92
+/Vertex              -0.5       0.866025404                92
+/Vertex      -0.707106781       0.707106781                92
+/Vertex      -0.866025404               0.5                92
+/Vertex      -0.965925826       0.258819045                92
+/Vertex                -1    1.22460635e-16                92
+/Vertex      -0.965925826      -0.258819045                92
+/Vertex      -0.866025404              -0.5                92
+/Vertex      -0.707106781      -0.707106781                92
+/Vertex              -0.5      -0.866025404                92
+/Vertex      -0.258819045      -0.965925826                92
+/Vertex   -1.83690953e-16                -1                92
+/Vertex       0.258819045      -0.965925826                92
+/Vertex               0.5      -0.866025404                92
+/Vertex       0.707106781      -0.707106781                92
+/Vertex       0.866025404              -0.5                92
+/Vertex       0.965925826      -0.258819045                92
+/Vertex                 1                 0                 0
+/Vertex       0.965925826       0.258819045                 0
+/Vertex       0.866025404               0.5                 0
+/Vertex       0.707106781       0.707106781                 0
+/Vertex               0.5       0.866025404                 0
+/Vertex       0.258819045       0.965925826                 0
+/Vertex    6.12303177e-17                 1                 0
+/Vertex      -0.258819045       0.965925826                 0
+/Vertex              -0.5       0.866025404                 0
+/Vertex      -0.707106781       0.707106781                 0
+/Vertex      -0.866025404               0.5                 0
+/Vertex      -0.965925826       0.258819045                 0
+/Vertex                -1    1.22460635e-16                 0
+/Vertex      -0.965925826      -0.258819045                 0
+/Vertex      -0.866025404              -0.5                 0
+/Vertex      -0.707106781      -0.707106781                 0
+/Vertex              -0.5      -0.866025404                 0
+/Vertex      -0.258819045      -0.965925826                 0
+/Vertex   -1.83690953e-16                -1                 0
+/Vertex       0.258819045      -0.965925826                 0
+/Vertex               0.5      -0.866025404                 0
+/Vertex       0.707106781      -0.707106781                 0
+/Vertex       0.866025404              -0.5                 0
+/Vertex       0.965925826      -0.258819045                 0
+/Vertex                 0                 0                92
+/Vertex                 0                 0                 0
+/Facet  1  25  26  2
+/Facet  2  26  27  3
+/Facet  3  27  28  4
+/Facet  4  28  29  5
+/Facet  5  29  30  6
+/Facet  6  30  31  7
+/Facet  7  31  32  8
+/Facet  8  32  33  9
+/Facet  9  33  34  10
+/Facet  10  34  35  11
+/Facet  11  35  36  12
+/Facet  12  36  37  13
+/Facet  13  37  38  14
+/Facet  14  38  39  15
+/Facet  15  39  40  16
+/Facet  16  40  41  17
+/Facet  17  41  42  18
+/Facet  18  42  43  19
+/Facet  19  43  44  20
+/Facet  20  44  45  21
+/Facet  21  45  46  22
+/Facet  22  46  47  23
+/Facet  23  47  48  24
+/Facet  24  48  25  1
+/Facet  49  1  2
+/Facet  49  2  3
+/Facet  49  3  4
+/Facet  49  4  5
+/Facet  49  5  6
+/Facet  49  6  7
+/Facet  49  7  8
+/Facet  49  8  9
+/Facet  49  9  10
+/Facet  49  10  11
+/Facet  49  11  12
+/Facet  49  12  13
+/Facet  49  13  14
+/Facet  49  14  15
+/Facet  49  15  16
+/Facet  49  16  17
+/Facet  49  17  18
+/Facet  49  18  19
+/Facet  49  19  20
+/Facet  49  20  21
+/Facet  49  21  22
+/Facet  49  22  23
+/Facet  49  23  24
+/Facet  49  24  1
+/Facet  25  50  26
+/Facet  26  50  27
+/Facet  27  50  28
+/Facet  28  50  29
+/Facet  29  50  30
+/Facet  30  50  31
+/Facet  31  50  32
+/Facet  32  50  33
+/Facet  33  50  34
+/Facet  34  50  35
+/Facet  35  50  36
+/Facet  36  50  37
+/Facet  37  50  38
+/Facet  38  50  39
+/Facet  39  50  40
+/Facet  40  50  41
+/Facet  41  50  42
+/Facet  42  50  43
+/Facet  43  50  44
+/Facet  44  50  45
+/Facet  45  50  46
+/Facet  46  50  47
+/Facet  47  50  48
+/Facet  48  50  25
+/EndPolyhedron
+/ColorRGB                 0                 0                 1
+/ForceWireframe  0
+/Origin                 0                 0                 0
+/BaseVector                 1                 0                 0                 0                 1                 0
+/Polyhedron
+/Vertex                 0                 0                92
+/Vertex                 8                 0                88
+/Vertex                 0                 0               100
+/Vertex                 0                 0                92
+/Vertex        7.74866529         1.9895191                88
+/Vertex                 0                 0               100
+/Vertex                 0                 0                92
+/Vertex        7.01045344        3.85402939                88
+/Vertex                 0                 0               100
+/Vertex                 0                 0                92
+/Vertex        5.83174902        5.47637685                88
+/Vertex                 0                 0               100
+/Vertex                 0                 0                92
+/Vertex        4.28661436         6.7546234                88
+/Vertex                 0                 0               100
+/Vertex                 0                 0                92
+/Vertex        2.47213595        7.60845213                88
+/Vertex                 0                 0               100
+/Vertex                 0                 0                92
+/Vertex       0.502324156        7.98421383                88
+/Vertex                 0                 0               100
+/Vertex                 0                 0                92
+/Vertex       -1.49905052        7.85829801                88
+/Vertex                 0                 0               100
+/Vertex                 0                 0                92
+/Vertex       -3.40623433        7.23861642                88
+/Vertex                 0                 0               100
+/Vertex                 0                 0                92
+/Vertex       -5.09939192        6.16410594                88
+/Vertex                 0                 0               100
+/Vertex                 0                 0                92
+/Vertex       -6.47213595        4.70228202                88
+/Vertex                 0                 0               100
+/Vertex                 0                 0                92
+/Vertex       -7.43821189        2.94499642                88
+/Vertex                 0                 0               100
+/Vertex                 0                 0                92
+/Vertex       -7.93691761        1.00266587                88
+/Vertex                 0                 0               100
+/Vertex                 0                 0                92
+/Vertex       -7.93691761       -1.00266587                88
+/Vertex                 0                 0               100
+/Vertex                 0                 0                92
+/Vertex       -7.43821189       -2.94499642                88
+/Vertex                 0                 0               100
+/Vertex                 0                 0                92
+/Vertex       -6.47213595       -4.70228202                88
+/Vertex                 0                 0               100
+/Vertex                 0                 0                92
+/Vertex       -5.09939192       -6.16410594                88
+/Vertex                 0                 0               100
+/Vertex                 0                 0                92
+/Vertex       -3.40623433       -7.23861642                88
+/Vertex                 0                 0               100
+/Vertex                 0                 0                92
+/Vertex       -1.49905052       -7.85829801                88
+/Vertex                 0                 0               100
+/Vertex                 0                 0                92
+/Vertex       0.502324156       -7.98421383                88
+/Vertex                 0                 0               100
+/Vertex                 0                 0                92
+/Vertex        2.47213595       -7.60845213                88
+/Vertex                 0                 0               100
+/Vertex                 0                 0                92
+/Vertex        4.28661436        -6.7546234                88
+/Vertex                 0                 0               100
+/Vertex                 0                 0                92
+/Vertex        5.83174902       -5.47637685                88
+/Vertex                 0                 0               100
+/Vertex                 0                 0                92
+/Vertex        7.01045344       -3.85402939                88
+/Vertex                 0                 0               100
+/Vertex                 0                 0                92
+/Vertex        7.74866529        -1.9895191                88
+/Vertex                 0                 0               100
+/Facet  1  4  5  2
+/Facet  2  5  6  3
+/Facet  3  6  4  1
+/Facet  4  7  8  5
+/Facet  5  8  9  6
+/Facet  6  9  7  4
+/Facet  7  10  11  8
+/Facet  8  11  12  9
+/Facet  9  12  10  7
+/Facet  10  13  14  11
+/Facet  11  14  15  12
+/Facet  12  15  13  10
+/Facet  13  16  17  14
+/Facet  14  17  18  15
+/Facet  15  18  16  13
+/Facet  16  19  20  17
+/Facet  17  20  21  18
+/Facet  18  21  19  16
+/Facet  19  22  23  20
+/Facet  20  23  24  21
+/Facet  21  24  22  19
+/Facet  22  25  26  23
+/Facet  23  26  27  24
+/Facet  24  27  25  22
+/Facet  25  28  29  26
+/Facet  26  29  30  27
+/Facet  27  30  28  25
+/Facet  28  31  32  29
+/Facet  29  32  33  30
+/Facet  30  33  31  28
+/Facet  31  34  35  32
+/Facet  32  35  36  33
+/Facet  33  36  34  31
+/Facet  34  37  38  35
+/Facet  35  38  39  36
+/Facet  36  39  37  34
+/Facet  37  40  41  38
+/Facet  38  41  42  39
+/Facet  39  42  40  37
+/Facet  40  43  44  41
+/Facet  41  44  45  42
+/Facet  42  45  43  40
+/Facet  43  46  47  44
+/Facet  44  47  48  45
+/Facet  45  48  46  43
+/Facet  46  49  50  47
+/Facet  47  50  51  48
+/Facet  48  51  49  46
+/Facet  49  52  53  50
+/Facet  50  53  54  51
+/Facet  51  54  52  49
+/Facet  52  55  56  53
+/Facet  53  56  57  54
+/Facet  54  57  55  52
+/Facet  55  58  59  56
+/Facet  56  59  60  57
+/Facet  57  60  58  55
+/Facet  58  61  62  59
+/Facet  59  62  63  60
+/Facet  60  63  61  58
+/Facet  61  64  65  62
+/Facet  62  65  66  63
+/Facet  63  66  64  61
+/Facet  64  67  68  65
+/Facet  65  68  69  66
+/Facet  66  69  67  64
+/Facet  67  70  71  68
+/Facet  68  71  72  69
+/Facet  69  72  70  67
+/Facet  70  73  74  71
+/Facet  71  74  75  72
+/Facet  72  75  73  70
+/Facet  73  1  2  74
+/Facet  74  2  3  75
+/Facet  75  3  1  73
+/EndPolyhedron
+/ColorRGB                 0                 0                 1
+/Origin                 0                 0                 0
+/BaseVector                 1                 0                 0                 0                 1                 0
+/MarkText2DS                 0                0              105               10                0                0 z
+/ColorRGB                 0                 0                 1
+/Origin                 0                 0                 0
+/BaseVector                 1                 0                 0                 0                 1                 0
+/MarkText2DS                 0                0               80               10                5                5 10 cm 
+/ColorRGB                 0                 0                 1
+/Origin                 0                 0                 0
+/BaseVector                 1                 0                 0                 0                 1                 0
+/MarkText2DS                 0                0                0               50             -100             -240 N03
+/ColorRGB                 1                 0                 0
+/ForceWireframe  0
+/Origin                 0                 0                 0
+/BaseVector                 1                 0                 0                 0                 1                 0
+/Polyline
+/PLVertex               -25              -130                50
+/PLVertex               -25              -130               -50
+/EndPolyline
+/ColorRGB                 1                 0                 0
+/ForceWireframe  0
+/Origin                 0                 0                 0
+/BaseVector                 1                 0                 0                 0                 1                 0
+/Polyline
+/PLVertex               -25              -125                50
+/PLVertex               -25              -135                50
+/EndPolyline
+/ColorRGB                 1                 0                 0
+/ForceWireframe  0
+/Origin                 0                 0                 0
+/BaseVector                 1                 0                 0                 0                 1                 0
+/Polyline
+/PLVertex               -20              -130                50
+/PLVertex               -30              -130                50
+/EndPolyline
+/ColorRGB                 1                 0                 0
+/ForceWireframe  0
+/Origin                 0                 0                 0
+/BaseVector                 1                 0                 0                 0                 1                 0
+/Polyline
+/PLVertex               -25              -125               -50
+/PLVertex               -25              -135               -50
+/EndPolyline
+/ColorRGB                 1                 0                 0
+/ForceWireframe  0
+/Origin                 0                 0                 0
+/BaseVector                 1                 0                 0                 0                 1                 0
+/Polyline
+/PLVertex               -20              -130               -50
+/PLVertex               -30              -130               -50
+/EndPolyline
+/ColorRGB                 0                 0                 1
+/Origin                 0                 0                 0
+/BaseVector                 1                 0                 0                 0                 1                 0
+/MarkText2DS               -25             -125                0               12                0                0 10 cm 
+/ColorRGB                 0                 0                 1
+/ForceWireframe  0
+/Origin                 0                 0                 0
+/BaseVector                 1                 0                 0                 0                 1                 0
+/Polyline
+/PLVertex              -600                 0                 0
+/PLVertex               600                 0                 0
+/EndPolyline
+/ColorRGB                 1                 1                 0
+/Origin                 0                 0                 0
+/BaseVector                 1                 0                 0                 0                 1                 0
+/MarkCircle2DS              -600                 0                 0               0.5
+/ColorRGB                 1                 1                 0
+/Origin                 0                 0                 0
+/BaseVector                 1                 0                 0                 0                 1                 0
+/MarkCircle2DS               600                 0                 0               0.5
+#--------------------
+!EndModeling
+!DrawAll
+!CloseDevice

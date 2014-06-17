@@ -1,0 +1,166 @@
+#include "StepAction.hh"
+
+
+StepAction::StepAction(class treeClass* crosstalk)
+:massOfNeutron(939.565 * MeV)
+ {
+   //SetTree();  
+   for(int i =0; i<80; i++){
+      mDet1IDcount[i]=0;}
+   count =0;
+   mHits = 0;
+   mTOF = 0;
+   mDet2IDcount =0;
+   mDet3IDcount =0;
+
+   mNumofDets = &(crosstalk->NumofDets);
+   mHits = &(crosstalk->Hits);
+   mTOF = crosstalk->TimeofFlight;
+   mDetID = crosstalk->DetID;
+   mNeutx = crosstalk->Neutx;
+   mNeuty = crosstalk->Neuty;
+   mNeutz = crosstalk->Neutz;
+   mEdeposited = crosstalk->Edeposited;
+   mEloss = crosstalk->Eloss;
+
+ }
+
+
+StepAction::~StepAction()
+ {}
+////////////////////////////////////////////////////////////////////////////////////////////////
+//USERRRRRR STEPPPPPPPPPPPING ACTIONNNNNNNNNNNNNNNNNNNNNNNNNN
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+void StepAction::UserSteppingAction(const G4Step* step)
+ {
+   G4Track* track = step -> GetTrack();
+ 
+   G4double deltaEnergy = step -> GetDeltaEnergy() / MeV;
+   G4double energyDeposited = step -> GetTotalEnergyDeposit() / MeV;
+
+   G4double globalTime = track -> GetGlobalTime() / ns;
+   G4String particleName = track -> GetDefinition() -> GetParticleName();
+   G4VPhysicalVolume* volume = track -> GetVolume();
+
+   G4String volumeName = volume -> GetName();
+   G4int copyNum = volume -> GetCopyNo();
+
+   //G4TrackVector* Secondary = step->GetfSecondary();
+   //G4int parentID = Secondary[0]->GetParentID();
+   //G4String Process = track->GetCreatorProcess()->GetProcessName();
+   //G4cout << SecName << " ParentID   " << G4endl;
+
+//Prestep process'
+   G4StepPoint* preStep = step->GetPreStepPoint();
+   G4ThreeVector prePdirection = preStep->GetMomentumDirection();
+   G4ThreeVector prePosition = preStep->GetPosition();
+
+//Poststep process'
+   G4StepPoint* postStep = step->GetPostStepPoint();
+   G4ThreeVector postPdirection = postStep->GetMomentumDirection();
+   G4ThreeVector postPosition = postStep->GetPosition();
+
+   G4TouchableHandle theTouchable = preStep->GetTouchableHandle();
+
+//This will populate the neutTree with the neutron only stats//////////////////////////////
+   G4double GlobalTime = track->GetGlobalTime() / ns;
+
+   if(particleName == "neutron"){
+     if(volumeName == "Test Can"){    
+     if(deltaEnergy != 0 || energyDeposited != 0 || prePosition != postPosition) {
+
+     for(int i=0; i < *mNumofDets; i++){
+     //For loop to cycle through the number of detectors and use an array to 
+     if(mDet1IDcount[i] == 0 && track->GetVolume()->GetCopyNo() == i){
+
+        mTOF[count] = GlobalTime;
+        //G4cout << mTOF[count] << " mTOF[count]" << G4endl;
+        //G4cout << count << " count" << G4endl;
+        //G4cout << track->GetVolume()->GetCopyNo() << " COPYNUM" << G4endl;                  
+
+        mEdeposited[count] = energyDeposited;
+        mEloss[count] = -(deltaEnergy);
+        mDetID[count] = theTouchable->GetCopyNumber();     
+        mNeutx[count] = track->GetPosition()[0] / cm;
+        mNeuty[count] = track->GetPosition()[1] / cm; 
+        mNeutz[count] = track->GetPosition()[2] / cm; 
+        count++;
+        *mHits = count;
+        mDet1IDcount[i]++;
+       }  
+       
+
+/*     if(mDet2IDcount < 1 && track->GetVolume()->GetCopyNo() == 2){
+
+        mDet2IDcount++;
+        mTOFArray[count] = GlobalTime;
+
+        mTOF[count] = GlobalTime;
+        //G4cout << mTOF[count] << " mTOF[count]" << G4endl;
+        //G4cout << count << " count" << G4endl;
+        //G4cout << track->GetVolume()->GetCopyNo() << " COPYNUM" << G4endl;                  
+
+        mEdeposited[count] = energyDeposited;
+        mDetID[count] = track->GetVolume()->GetCopyNo();     
+        mNeutx[count] = track->GetPosition()[0] / cm;
+        mNeuty[count] = track->GetPosition()[1] / cm; 
+        mNeutz[count] = track->GetPosition()[2] / cm; 
+        count++;
+        *mHits = count;
+        G4cout << *mHits << " Hits " << G4endl;
+       }
+
+     if(mDet3IDcount < 1 && track->GetVolume()->GetCopyNo() == 3){
+
+        mDet3IDcount++;
+        mTOFArray[count] = GlobalTime;
+
+        mTOF[count] = GlobalTime;
+        //G4cout << mTOF[count] << " mTOF[count]" << G4endl;
+        //G4cout << count << " count" << G4endl;
+        //G4cout << track->GetVolume()->GetCopyNo() << " COPYNUM" << G4endl;                  
+
+        mEdeposited[count] = energyDeposited;
+        mDetID[count] = track->GetVolume()->GetCopyNo();     
+        mNeutx[count] = track->GetPosition()[0] / cm;
+        mNeuty[count] = track->GetPosition()[1] / cm; 
+        mNeutz[count] = track->GetPosition()[2] / cm; 
+        count++;
+        *mHits = count;
+        G4cout << *mHits << " Hits " << G4endl;
+       }*/
+       }
+     }
+     }
+/*
+//////////////////////////////// track->GetTrackStatus() => a definition of an enumeration with
+//////////////////////////////// 0-fAlive
+//////////////////////////////// 1-fStopButAlive
+//////////////////////////////// 2-fStopAndKill
+//////////////////////////////// 3-fKillTrackAndSecondaries
+//////////////////////////////// 4-fSuspend
+//////////////////////////////// 5-fPostponeToNextEvent
+*/
+     //G4cout << track->GetVolume()->GetCopyNo() << "   Copy Num;  " << track->GetTrackLength() / cm << " TrackLength" << G4endl;
+
+     if(track->GetTrackStatus() == 2)
+     {
+     //G4cout << mDet2IDcount << " DetCount" << G4endl;
+   for(int i =0; i<80; i++){
+      mDet1IDcount[i]=0;}
+         //mDet1IDcount = 0;
+         mDet2IDcount = 0;
+	 mDet3IDcount = 0;
+         count = 0;
+     } 
+     
+  
+  }
+if(*mHits == 0)
+{
+
+}
+/////////////////////////////////////////////////////////////////////////////////////////
+
+}

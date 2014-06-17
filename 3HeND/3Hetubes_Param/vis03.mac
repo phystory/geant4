@@ -1,0 +1,17 @@
+/control/verbose 2
+/vis/open OGLIX 
+/vis/scene/create
+/vis/viewer/reset
+/vis/drawVolume
+/tracking/storeTrajectory 1
+/vis/scene/add/trajectories
+/vis/modeling/trajectories/create/drawByCharge
+/vis/modeling/trajectories/drawByCharge-0/default/setDrawStepPts true
+/vis/modeling/trajectories/drawByCharge-0/default/setStepPtsSize 2
+/vis/viewer/set/style wireframe
+/vis/viewer/set/viewpointThetaPhi 0 0
+/vis/viewer/zoom 6
+/vis/scene/endOfEventAction accumulate
+/control/saveHistory
+/run/verbose 2
+/vis/viewer/flush

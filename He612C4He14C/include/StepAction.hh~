@@ -1,0 +1,59 @@
+#ifndef StepAction_H
+#define StepAction_H 1
+
+#include "global.hh"
+#include "treeClass.hh"
+#include <list>
+using namespace std;
+
+#include <TFile.h>
+#include <TROOT.h>
+#include <TTree.h>
+#include <TBranch.h>
+
+#include "G4Step.hh"
+#include "G4Track.hh"
+#include "G4StepPoint.hh"
+#include "G4TrackStatus.hh"
+#include "G4TrackVector.hh"
+#include "G4ParticleTypes.hh"
+#include "G4SteppingManager.hh"
+#include "G4VPhysicalVolume.hh"
+#include "G4ParticleDefinition.hh"
+#include "G4UserSteppingAction.hh"
+
+
+class StepAction:public G4UserSteppingAction
+ {
+
+   public:
+      StepAction(class treeClass* crosstalk);
+      ~StepAction();
+      void UserSteppingAction(const G4Step* step);
+
+   private:
+
+      G4int               count;
+
+      G4int               mDet2IDcount;
+      G4int               mDet3IDcount;
+      G4int               *mNumofDets;
+      G4int               mDet1IDcount[80];
+
+      G4int	          *mHits;
+      G4double            *mTOF;
+      G4int               *mDetID;
+      G4double            *mNeutx;
+      G4double            *mNeuty;
+      G4double            *mNeutz;
+      G4double            *mEdeposited;
+      G4double            *mEloss;
+
+      const G4double massOfNeutron;
+
+ };
+
+#endif
+
+
+

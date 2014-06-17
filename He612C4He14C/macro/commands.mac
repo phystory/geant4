@@ -1,0 +1,103 @@
+# ----------------
+# Verbose Settings
+# ----------------
+#/control/verbose 2
+#/run/verbose 2
+#/tracking/verbose 2
+
+# ----------------
+# Visualization Settings
+# ----------------
+# HepRepFile driver
+#/vis/open HepRepFile
+
+# DAWNFILE driver
+#/vis/open DAWNFILE
+
+# OpenGL drivers
+#/vis/open OGLIX
+#/vis/open OGLIXm
+
+# Add world volume
+#/vis/drawVolume
+
+# Visualise geometry
+#/vis/viewer/flush
+
+# Set camera angle for OGLIXm driver
+#/vis/viewer/set/viewpointThetaPhi 70 60
+#/vis/viewer/set/hiddenEdge true
+
+# Add trajectories to the visualization.
+#/vis/scene/add/trajectories
+
+# Add hits to scene
+#/vis/scene/add/hits
+
+# Accumulate multiple events in one picture.
+#/vis/scene/endOfEventAction accumulate
+
+# ----------------
+# Trajectory Colouring Scheme
+# ----------------
+#/vis/modeling/trajectories/create/drawByCharge
+#/vis/modeling/trajectories/drawByCharge-0/set -1 blue
+#/vis/modeling/trajectories/drawByCharge-0/set 1 blue
+#/vis/modeling/trajectories/drawByCharge-0/set 0 green
+
+#/vis/modeling/trajectories/create/drawByParticleID
+#/vis/modeling/trajectories/drawByParticleID-0/set e- blue
+#/vis/modeling/trajectories/drawByParticleID-0/set proton blue
+#/vis/modeling/trajectories/drawByParticleID-0/set gamma green
+#/vis/modeling/trajectories/drawByParticleID-0/set neutron red
+
+# Disable visualization
+#/vis/disable
+
+# ----------------
+# Detecting Overlapping Volumes
+# ----------------
+# Tunable factors for grid_test
+#/geometry/test/grid_cells <X Y Z>
+
+# Tunable factors for cylinder_test
+#/geometry/test/cylinder_geometry <X Y Z>
+#/geometry/test/cylinder_scaleZ <X>
+#/geometry/test/cylinder_scaleRho <X>
+
+# Tunable factors for line_test
+#/geometry/test/position <X>
+#/geometry/test/direction <X>
+
+# Tunable factors for recursion algorithm
+#/geometry/test/recursion_start <X>
+#/geometry/test/recursion_depth <X>
+
+# Tunable factors for overlap length tolerance
+#/geometry/test/tolerance <X>
+
+# Different methods to test for overlapping volumes
+#/geometry/test/grid_test [recursion flag]
+#/geometry/test/cylinder_test [recursion flag]
+#/geometry/test/line_test [recursion flag]
+
+# ----------------
+# Beam Characteristics
+# ----------------
+# Change primary particle
+#/gun/particle e-
+#/gun/particle proton
+#/gun/particle neutron
+#/gun/particle geantino
+
+# Change primary particle energy
+#/gun/energy 1 MeV
+
+# Begin simulation
+#/run/beamOn 1
+
+# Exit simulation
+#exit
+
+
+

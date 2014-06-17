@@ -1,0 +1,38 @@
+#ifndef EventAction_H
+#define EventAction_H 1
+
+#include "G4Event.hh"
+#include "G4UserEventAction.hh"
+#include "G4ThreeVector.hh"
+
+#include <TTree.h>
+#include <TH1.h>
+#include "global.hh"
+#include "treeClass.hh"
+
+
+class EventAction:public G4UserEventAction
+ {
+
+   public:
+      EventAction(TTree* CrossTree, treeClass* crosstalk);
+      ~EventAction();
+      void BeginOfEventAction(const G4Event* event);
+      void EndOfEventAction(const G4Event*);
+
+   private:
+      TTree* crossT;
+      treeClass* t;
+
+      G4int             *mEventID;
+
+
+/////////////////////////////////////////////////////
+
+
+ };
+
+#endif
+
+
+

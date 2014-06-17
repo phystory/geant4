@@ -1,0 +1,48 @@
+#include <TFile.h>
+#include <TTree.h>
+
+
+class MyStat
+{
+ public:
+   MyStat(int);
+   ~MyStat();
+  //Accumulated information
+   int nb_triton;
+   int nb_proton;
+   int nb_event;
+   int *nb_neutron_tube;
+   int *nb_reaction_tube;
+   int nb_tube;
+
+   double *xtube;
+   double *ytube;
+
+// flags
+   int in_tube;
+   int have_reacted;
+   int have_reacted_DoIt_proton;
+   int have_reacted_DoIt_triton;
+   int have_reacted_Done_proton;
+   int have_reacted_Done_triton;
+//Event per event information ... Will be used to fill root file
+   double e_proton;
+   double e_triton;
+   double initial_e_neutron;
+   int tube_number_reaction;
+   int tube_number_neutron;
+
+// Root storage
+   TFile *store_file;
+   TTree *tree;
+
+//Member function
+   void CleanEvent();
+   void NewEvent(double);
+   int FindTube(double,double,double);
+
+   void FillTree();
+   void SaveTree();
+
+   void PrintScreen();
+};

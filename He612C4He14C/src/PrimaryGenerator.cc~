@@ -1,0 +1,96 @@
+#include "PrimaryGenerator.hh"
+#include <iostream>
+#include <cmath>
+#include "G4RandomDirection.hh"
+
+using namespace std;
+
+G4ParticleGun* PrimaryGenerator::particleGun(0);
+
+PrimaryGenerator::PrimaryGenerator(class treeClass* crosstalk)
+ {
+
+   count =0;
+   G4int numberOfParticles = 1;
+   ParticleNum = &(crosstalk->NumOfParticles);
+   mQ = &(crosstalk->Q);
+   MagP = crosstalk->Pmag;
+   Angle = &(crosstalk->InitNeutronAng);
+
+   //G4double energyOfParticles = 1 ;//This needs to be randomized to a Gaussian
+   G4String nameOfParticles = "neutron";
+
+   G4ParticleTable* particleTable = G4ParticleTable::GetParticleTable();
+   particleGun = new G4ParticleGun(numberOfParticles);
+   particleGun -> SetParticleDefinition(particleTable -> FindParticle(nameOfParticles));
+   //particleGun -> SetParticleEnergy(energyOfParticles);
+   particleGun -> SetParticlePosition(G4ThreeVector(0.0, 0.0, 0.0));
+
+ }
+
+
+PrimaryGenerator::~PrimaryGenerator()
+ {
+
+   delete particleGun;
+
+ }
+
+
+void PrimaryGenerator::GeneratePrimaries(G4Event* event)
+ {
+   double R = 3;
+   const G4int NumberofParticles = 2;
+   G4ThreeVector PVecDirection[NumberofParticles], q;
+   //double r1 = sqrt(r());
+//G4UniformRand() calls from the flat() distribution in the CLHEP library.
+//The definition can be found in RandFlat.icc   
+   double r1; 
+   double radius;
+   double x,y,z;
+   double PI = 4*atan(1);
+   //double theta = acos(1-2*r());
+   //double theta = 2*PI*G4UniformRand();
+   double theta; 
+   //double phi = 2*PI*r();
+//Detector information to know how to shoot
+   G4double wallHeight = 10;
+   G4double wallWidth = 200*sin(PI/12);
+
+   for ( int index = 0; index < NumberofParticles; index++)
+   {
+      TRandom3 rando(0);
+      theta = PI/6*G4UniformRand();
+      r1 = sqrt(G4UniformRand());
+      radius = R*r1;
+
+//Be sure to use the right energy, E here is about 5MeV. p = sqrt(2*m*E)
+      G4double p = rando.Gaus(5, 1.3) ;
+
+      MagP[index] = p;
+
+      *ParticleNum = index+1;
+        
+      G4cout.flush();
+      particleGun -> SetParticleMomentum(p);    
+      x = radius*sin(theta);//*cos(phi);
+      y = radius*cos(theta);//*sin(phi);
+      z = 7.5*cos(theta)+57.5;
+      //x = 2*( G4UniformRand()-0.5 )*wallWidth;
+      //y = 2*( G4UniformRand()-0.5 )*wallHeight;
+      //z = 7.5*cos(theta)+57.5;
+      PVecDirection[index].set( x, y, z );
+      particleGun -> SetParticleMomentumDirection(PVecDirection[index]);
+      //particleGun -> SetParticleMomentumDirection(G4ThreeVector(x, y, 65.0));
+      particleGun -> GeneratePrimaryVertex(event);
+      G4cout << "done." << G4endl;
+      G4cout.flush();
+   }	
+   q = PVecDirection[0]-PVecDirection[1];
+   *mQ = q.mag(); 
+   G4double ang = PVecDirection[0].angle(PVecDirection[1]);
+   *Angle = ang;
+
+ }
+
+

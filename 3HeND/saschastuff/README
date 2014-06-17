@@ -1,0 +1,31 @@
+Comments on this version of the Simulations for Neutron Detector at Notre Dame
+
+created 08-08-2007, by Sascha Falahat
+
+
+1. Geometry
+
+We vary the number of tubes, the radius, the number of Rings etc. in the file run.cc
+
+We use standard materials defined in G4NistManager and called in the Construction file.
+
+The 3He ist defined with 10 bar at room temperature (21 deg Celsius)
+
+Al Tubes are used!
+
+
+2. Physics
+
+We use the QGSP_BIC_HP physics list.
+
+
+3. Output files
+
+Output files are root files stored in the directory G4Data.
+The output structure is coded in MyStat.cc
+
+4. Visualization 
+
+Turned off!
+
+

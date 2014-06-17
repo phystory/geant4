@@ -1,0 +1,65 @@
+# ----------------
+# Verbose Settings
+# ----------------
+/control/verbose 0
+/run/verbose 0
+/tracking/verbose 0
+
+# ----------------
+# Visualization Settings
+# ----------------
+# HepRepFile 
+/vis/open HepRepFile
+
+# Use OpenGL Visualization
+/vis/open OGLIX 600x600-0+0
+# Add world volume
+/vis/drawVolume
+
+/vis/viewer/set/viewpointVector 1.5 0.5 -1
+
+# Visualise geometry
+#/vis/viewer/flush
+
+# Add trajectories to the visualization.
+#/vis/scene/add/trajectories
+
+# Add hits to scene
+#/vis/scene/add/hits
+
+# Accumulate multiple events in one picture.
+/vis/scene/endOfEventAction accumulate -1
+
+# ----------------
+# Trajectory Colouring Scheme
+# ----------------
+#/vis/modeling/trajectories/create/drawByCharge
+#/vis/modeling/trajectories/drawByCharge-0/set -1 blue
+#/vis/modeling/trajectories/drawByCharge-0/set 1 blue
+#/vis/modeling/trajectories/drawByCharge-0/set 0 green
+
+/vis/modeling/trajectories/create/drawByParticleID
+/vis/modeling/trajectories/drawByParticleID-0/set e- blue
+/vis/modeling/trajectories/drawByParticleID-0/set proton blue
+/vis/modeling/trajectories/drawByParticleID-0/set gamma green
+/vis/modeling/trajectories/drawByParticleID-0/set neutron red
+
+# Disable visualization
+#/vis/disable
+
+# ----------------
+# Beam Characteristics
+# ----------------
+# Change primary particle
+#/gun/particle e-
+#/gun/particle proton
+#/gun/particle neutron
+#/gun/particle geantino
+
+# Begin simulation
+#/run/beamOn 1
+# Exit simulation
+#exit
+
+
+

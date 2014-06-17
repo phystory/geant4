@@ -1,0 +1,46 @@
+#include "EventAction.hh"
+
+
+EventAction::EventAction(TTree* CrossTree, treeClass* crosstalk)
+ {
+
+//////////////////////////////  
+   t = crosstalk;
+   mEventID = &(crosstalk->EventID);
+   crossT = CrossTree;
+
+//////////////////////////////
+
+ }
+
+
+EventAction::~EventAction()
+ {}
+
+
+void EventAction::BeginOfEventAction(const G4Event* event)
+ {
+
+   *mEventID = event -> GetEventID();
+
+//   if (*eventID % 2000 == 0)
+      G4cout << G4endl << "*****  BEGIN Event Number " << event -> GetEventID() << "  *****" << G4endl;
+
+ }
+
+
+void EventAction::EndOfEventAction(const G4Event*)
+ {
+
+//   if (*eventID % 2000 == 0)
+      G4cout << G4endl << "*****  END Event Number " << *mEventID <<  " Hits " << t->Hits << "  *****" << G4endl;
+
+   if(t->Hits > 0)
+   crossT -> Fill();
+
+   t->Hits = 0;
+
+ }
+
+
+

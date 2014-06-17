@@ -1,0 +1,104 @@
+//
+// ********************************************************************
+// * License and Disclaimer                                           *
+// *                                                                  *
+// * The  Geant4 software  is  copyright of the Copyright Holders  of *
+// * the Geant4 Collaboration.  It is provided  under  the terms  and *
+// * conditions of the Geant4 Software License,  included in the file *
+// * LICENSE and available at  http://cern.ch/geant4/license .  These *
+// * include a list of copyright holders.                             *
+// *                                                                  *
+// * Neither the authors of this software system, nor their employing *
+// * institutes,nor the agencies providing financial support for this *
+// * work  make  any representation or  warranty, express or implied, *
+// * regarding  this  software system or assume any liability for its *
+// * use.  Please see the license in the file  LICENSE  and URL above *
+// * for the full disclaimer and the limitation of liability.         *
+// *                                                                  *
+// * This  code  implementation is the result of  the  scientific and *
+// * technical work of the GEANT4 collaboration.                      *
+// * By using,  copying,  modifying or  distributing the software (or *
+// * any work based  on the software)  you  agree  to acknowledge its *
+// * use  in  resulting  scientific  publications,  and indicate your *
+// * acceptance of all terms of the Geant4 Software license.          *
+// ********************************************************************
+//
+//
+// Here we define the computation of the position of the 3He-Tubes.
+//
+//
+// file date : 09-10-2007
+
+
+
+
+#include "HeTube01Parametrisation.hh"
+#include "HeTube01DetectorParameterDef.hh"
+
+#include "G4VPhysicalVolume.hh"
+#include "G4ThreeVector.hh"
+#include "G4Tubs.hh"
+#include "G4Transform3D.hh"
+#include "G4RotationMatrix.hh"
+
+#include "MyConfig.hh"
+#include "MyStat.hh"
+
+extern MyStat *MyStatistic;
+extern MyConfig *ConfigDet;
+
+HeTube01Parametrisation::HeTube01Parametrisation()
+{
+#include "NeutronDetectorParameterDef.icc"
+}
+
+HeTube01Parametrisation::~HeTube01Parametrisation()
+{;}
+
+void HeTube01Parametrisation::ComputeTransformation
+(const G4int copyNo, G4VPhysicalVolume* physVol) const
+{
+  int nb=0;
+  int ttt=copyNo;
+  float Radius=0;
+  for(int i=0;i<ConfigDet->nb_radius;i++)
+  {
+   int rr=copyNo;
+   for (int e=0;e<=i;e++) rr-=ConfigDet->nb_tube[e];
+   if(rr<0)
+   {
+    nb=ConfigDet->nb_tube[i];
+    Radius=ConfigDet->radius[i] *cm;
+    for(int j=0;j<i;j++)ttt-=ConfigDet->nb_tube[j];
+    break;
+   }
+  }
+  G4double phi;
+  phi = 360.*deg;
+  G4double x=Radius*sin(ttt*phi/nb);
+  G4double y=Radius*cos(ttt*phi/nb);
+  MyStatistic->xtube[copyNo]=x;
+  MyStatistic->ytube[copyNo]=y;
+  G4double z=0.;
+
+  
+  physVol->SetTranslation(G4ThreeVector(x,y,z));
+ 
+
+}
+
+void HeTube01Parametrisation::ComputeDimensions
+(G4Tubs& HeTubes_Param, const G4int copyNo, const G4VPhysicalVolume*) const
+{
+  HeTubes_Param.SetInnerRadius(innerRadiusOfHeTube);
+  HeTubes_Param.SetOuterRadius(outerRadiusOfHeTube);
+  HeTubes_Param.SetZHalfLength(heightOfHeTube);
+  HeTubes_Param.SetStartPhiAngle(startAngleOfHeTube);
+  HeTubes_Param.SetDeltaPhiAngle(spanningAngleOfHeTube);
+  
+  if(copyNo>70000000)
+   {G4cout << "All tubes have been computed!"<< G4endl;
+  }
+
+  
+}

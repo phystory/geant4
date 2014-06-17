@@ -1,0 +1,36 @@
+#ifndef treeClass_CSM_H
+#define treeClass_CSM_H 1
+   const G4int        MaxArraySize = 1000;
+using namespace std;
+class treeClass
+{
+
+   public:
+   G4int	      Hits;
+   G4int              NumofDets;
+   G4int              EventID;
+   G4double           KineticEner;
+   G4int              DminNum;
+   G4double           DetLength; 
+   G4int              DMinNumDist;
+   G4int              NumOfParticles;
+
+   G4int              DetID[MaxArraySize];
+   G4double           TimeofFlight[MaxArraySize];
+   G4double           Neutx[MaxArraySize];
+   G4double           Neuty[MaxArraySize];
+   G4double           Neutz[MaxArraySize];
+   G4double           Edeposited[MaxArraySize];
+   G4double           Eloss[MaxArraySize];
+
+   G4double           DetX[MaxArraySize];
+   G4double           DetY[MaxArraySize];
+   G4double           DetZ[MaxArraySize];
+   G4double           DetMinDist[MaxArraySize];
+   G4double           Pmag[MaxArraySize];
+   G4double           InitNeutronAng;
+
+
+};
+
+#endif

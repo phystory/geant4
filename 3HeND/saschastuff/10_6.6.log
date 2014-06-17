@@ -1,0 +1,194 @@
+ Script to run Geant4 simulation
+ Script started at Sun Sep 30 23:00:33 EDT 2007
+ Script run in directory /afs/nd.edu/user30/mcouder/geant4/saschastuff
+ User name: mcouder (Login name: mcouder)
+ *******************
+ Starting Geant4 run
+ *******************
+ Input parameters for run
+1
+6.6   10
+
+ *******************
+/usr/nuclear/root/bin:/afs/nd.edu/user30/mcouder/geant4/bin/Linux-g++:/opt/und/schrodinger/2006:/opt/und/schrodinger/2006/utilities:/opt/und/local/bin:/opt/und/mathematica/6.0/Executables:/opt/und/maple/11/bin:/opt/und/intel/compiler81/bin:/opt/und/pgi/6.1-2/linux86-64/6.1/bin:/afs/nd.edu/i386_linux24/opt/und/matlab/7.4/bin:/opt/und/modules/3.1.6/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/usr/X11R6/bin:/usr/X11R6/lib:.:/usr/nuclear/CERN/2002/bin:/usr/nuclear/hhirf:/usr/nuclear/rw01/bin:/usr/nuclear/bin:/usr/nuclear/transport:/usr/nuclear/CERN/root/bin:.:/usr/nuclear/rp/bin:/afs/nd.edu/user30/mcouder/bin:.:/afs/nd.edu/user30/mcouder/bin:.
+/usr/nuclear/root/lib:/usr/X11R6/lib64:/usr/nuclear/clhep/2.0.3.1/lib:/usr/nuclear/geant/4.9.0/lib/geant4/Linux-g++:/opt/und/local/lib:/opt/und/intel/compiler81/lib:/opt/und/pgi/6.1-2/linux86-64/6.1/lib:/usr/nuclear/CERN/root/lib:/usr/nuclear/src/pgplot
+
+*************************************************************
+ Geant4 version Name: geant4-09-00    (29-June-2007)
+                      Copyright : Geant4 Collaboration
+                      Reference : NIM A 506 (2003), 250-303
+                            WWW : http://cern.ch/geant4
+*************************************************************
+
+
+<<< Geant4 Physics List engine packaging library: PACK 5.3
+<<< Geant4 Physics List simulation engine: QGSP_BIC_HP 1.2
+
+NeutronHP: /Elastic/ file for Z = 6, A = 13 is not found and NeutronHP will use /usr/nuclear/geant/4.9.0/data/G4NDL3.11/Elastic///CrossSection/6_nat_Carbon
+NeutronHP: /Elastic/ file for Z = 8, A = 18 is not found and NeutronHP will use /usr/nuclear/geant/4.9.0/data/G4NDL3.11/Elastic///CrossSection/8_17_Oxygen
+NeutronHP: /Inelastic file for Z = 1, A = 1 is not found and NeutronHP will use /usr/nuclear/geant/4.9.0/data/G4NDL3.11/Inelastic//CrossSection/1_2_Hydrogen
+NeutronHP: /Capture file for Z = 6, A = 13 is not found and NeutronHP will use /usr/nuclear/geant/4.9.0/data/G4NDL3.11/Capture//CrossSection/6_nat_Carbon
+NeutronHP: /Elastic file for Z = 6, A = 13 is not found and NeutronHP will use /usr/nuclear/geant/4.9.0/data/G4NDL3.11/Elastic//CrossSection/6_nat_Carbon
+NeutronHP: /Inelastic file for Z = 6, A = 13 is not found and NeutronHP will use /usr/nuclear/geant/4.9.0/data/G4NDL3.11/Inelastic//CrossSection/6_nat_Carbon
+NeutronHP: /Capture file for Z = 8, A = 18 is not found and NeutronHP will use /usr/nuclear/geant/4.9.0/data/G4NDL3.11/Capture//CrossSection/8_17_Oxygen
+NeutronHP: /Elastic file for Z = 8, A = 18 is not found and NeutronHP will use /usr/nuclear/geant/4.9.0/data/G4NDL3.11/Elastic//CrossSection/8_17_Oxygen
+NeutronHP: /Inelastic file for Z = 8, A = 18 is not found and NeutronHP will use /usr/nuclear/geant/4.9.0/data/G4NDL3.11/Inelastic//CrossSection/8_17_Oxygen
+Thank you for using G4BinaryCascade. 
+Thank you for using G4BinaryCascade. 
+/usr/nuclear/geant/4.9.0/data/G4NDL3.11
+NeutronHP: /Capture/ file for Z = 6, A = 13 is not found and NeutronHP will use /usr/nuclear/geant/4.9.0/data/G4NDL3.11/Capture///CrossSection/6_nat_Carbon
+NeutronHP: /Capture/ file for Z = 8, A = 18 is not found and NeutronHP will use /usr/nuclear/geant/4.9.0/data/G4NDL3.11/Capture///CrossSection/8_17_Oxygen
+Thank you for using G4BinaryCascade. 
+
+phot:  Total cross sections from Sandia parametrisation. 
+      Sampling according PhotoElectric model
+
+compt:  Total cross sections has a good parametrisation from 10 KeV to (100/Z) GeV
+      Sampling according Klein-Nishina model
+      tables are built for  gamma
+      Lambda tables from 100 eV  to 100 GeV in 90 bins.
+
+conv:  Total cross sections has a good parametrisation from 1.5 MeV to 100 GeV for all Z;
+      sampling secondary e+e- according Bethe-Heitler model
+      tables are built for  gamma
+      Lambda tables from 1.022 MeV to 100 GeV in 100 bins.
+
+msc:  Model variant of multiple scattering for e-
+      Lambda tables from 100 eV  to 100 TeV in 120 bins.
+      LateralDisplacementFlag=  1   Skin= 0
+      Boundary/stepping algorithm is active with RangeFactor= 0.02  Step limit type 1
+
+eIoni:   tables are built for  e-
+      dE/dx and range tables from 100 eV  to 100 TeV in 120 bins.
+      Lambda tables from threshold to 100 TeV in 120 bins.
+      Delta cross sections and sampling from MollerBhabha model
+      Good description from 1 KeV to 100 GeV.
+      Step function: finalRange(mm)= 1, dRoverRange= 0.2, integral: 1
+
+eBrem:   tables are built for  e-
+      dE/dx and range tables from 100 eV  to 100 TeV in 120 bins.
+      Lambda tables from threshold to 100 TeV in 120 bins.
+      Total cross sections and sampling from StandBrem model (based on the EEDL data library) 
+      Good description from 1 KeV to 100 GeV, log scale extrapolation above 100 GeV. LPM flag 1
+
+eIoni:   tables are built for  e+
+      dE/dx and range tables from 100 eV  to 100 TeV in 120 bins.
+      Lambda tables from threshold to 100 TeV in 120 bins.
+      Delta cross sections and sampling from MollerBhabha model
+      Good description from 1 KeV to 100 GeV.
+      Step function: finalRange(mm)= 1, dRoverRange= 0.2, integral: 1
+
+eBrem:   tables are built for  e+
+      dE/dx and range tables from 100 eV  to 100 TeV in 120 bins.
+      Lambda tables from threshold to 100 TeV in 120 bins.
+      Total cross sections and sampling from StandBrem model (based on the EEDL data library) 
+      Good description from 1 KeV to 100 GeV, log scale extrapolation above 100 GeV. LPM flag 1
+
+annihil:       Sampling according eplus2gg model
+      tables are built for  e+
+      Lambda tables from 100 eV  to 100 TeV in 120 bins.
+
+msc:  Model variant of multiple scattering for proton
+      Lambda tables from 100 eV  to 100 TeV in 120 bins.
+      LateralDisplacementFlag=  1   Skin= 0
+      Boundary/stepping algorithm is active with RangeFactor= 0.2  Step limit type 0
+
+hIoni:   tables are built for  proton
+      dE/dx and range tables from 100 eV  to 100 TeV in 120 bins.
+      Lambda tables from threshold to 100 TeV in 120 bins.
+      Scaling relation is used from proton dE/dx and range.
+      Delta cross sections and sampling from BetheBloch model for scaled energy > 2 MeV
+      Parametrisation from Bragg for protons below.
+      Step function: finalRange(mm)= 1, dRoverRange= 0.2, integral: 1
+
+msc:  Model variant of multiple scattering for GenericIon
+      LateralDisplacementFlag=  0   Skin= 0
+      Boundary/stepping algorithm is active with RangeFactor= 0.2  Step limit type 1
+
+ionIoni:   tables are built for  GenericIon
+      dE/dx and range tables from 100 eV  to 100 TeV in 120 bins.
+      Lambda tables from threshold to 100 TeV in 120 bins.
+      Scaling relation is used from proton dE/dx and range.
+      Delta cross sections and sampling from BetheBloch model for scaled energy > 2 MeV
+      Parametrisation from BraggIon for protons below. NuclearStopping 1
+
+      Stopping Power data for 8 ion/material pairs are used.
+      Step function: finalRange(mm)= 0.1, dRoverRange= 0.1, integral: 1
+
+hIoni:   tables are built for  anti_proton
+      dE/dx and range tables from 100 eV  to 100 TeV in 120 bins.
+      Lambda tables from threshold to 100 TeV in 120 bins.
+      Scaling relation is used from proton dE/dx and range.
+      Delta cross sections and sampling from BetheBloch model for scaled energy > 2 MeV
+      Parametrisation from Bragg for protons below.
+      Step function: finalRange(mm)= 1, dRoverRange= 0.2, integral: 1
+
+msc:  Model variant of multiple scattering for mu+
+      Lambda tables from 100 eV  to 100 TeV in 120 bins.
+      LateralDisplacementFlag=  1   Skin= 0
+      Boundary/stepping algorithm is active with RangeFactor= 0.2  Step limit type 0
+
+muIoni:   tables are built for  mu+
+      dE/dx and range tables from 100 eV  to 100 TeV in 120 bins.
+      Lambda tables from threshold to 100 TeV in 120 bins.
+      Bether-Bloch model for E > 0.2 MeV, parametrisation of Bragg peak below, 
+      radiative corrections for E > 1 GeV
+      Step function: finalRange(mm)= 1, dRoverRange= 0.2, integral: 1
+
+muBrems:   tables are built for  mu+
+      dE/dx and range tables from 100 eV  to 100 TeV in 120 bins.
+      Lambda tables from threshold to 100 TeV in 120 bins.
+      Parametrised model 
+
+muPairProd:   tables are built for  mu+
+      dE/dx and range tables from 100 eV  to 100 TeV in 120 bins.
+      Lambda tables from threshold to 100 TeV in 120 bins.
+      Parametrised model 
+
+muIoni:   tables are built for  mu-
+      dE/dx and range tables from 100 eV  to 100 TeV in 120 bins.
+      Lambda tables from threshold to 100 TeV in 120 bins.
+      Bether-Bloch model for E > 0.2 MeV, parametrisation of Bragg peak below, 
+      radiative corrections for E > 1 GeV
+      Step function: finalRange(mm)= 1, dRoverRange= 0.2, integral: 1
+
+muBrems:   tables are built for  mu-
+      dE/dx and range tables from 100 eV  to 100 TeV in 120 bins.
+      Lambda tables from threshold to 100 TeV in 120 bins.
+      Parametrised model 
+
+muPairProd:   tables are built for  mu-
+      dE/dx and range tables from 100 eV  to 100 TeV in 120 bins.
+      Lambda tables from threshold to 100 TeV in 120 bins.
+      Parametrised model 
+
+G4UHadronElasticProcess for neutron PDGcode= 2112  Elow(MeV)= 19  Elowest(eV)= 0
+
+hIoni:   tables are built for  pi+
+      dE/dx and range tables from 100 eV  to 100 TeV in 120 bins.
+      Lambda tables from threshold to 100 TeV in 120 bins.
+      Scaling relation is used from proton dE/dx and range.
+      Delta cross sections and sampling from BetheBloch model for scaled energy > 0.297504 MeV
+      Parametrisation from Bragg for protons below.
+      Step function: finalRange(mm)= 1, dRoverRange= 0.2, integral: 1
+
+msc:  Model variant of multiple scattering for pi-
+      Lambda tables from 100 eV  to 100 TeV in 120 bins.
+      LateralDisplacementFlag=  1   Skin= 0
+      Boundary/stepping algorithm is active with RangeFactor= 0.2  Step limit type 0
+
+hIoni:   tables are built for  pi-
+      dE/dx and range tables from 100 eV  to 100 TeV in 120 bins.
+      Lambda tables from threshold to 100 TeV in 120 bins.
+      Scaling relation is used from proton dE/dx and range.
+      Delta cross sections and sampling from BetheBloch model for scaled energy > 0.297504 MeV
+      Parametrisation from Bragg for protons below.
+      Step function: finalRange(mm)= 1, dRoverRange= 0.2, integral: 1
+====================================
+1000000 neutron simulated
+229856 neutron reach tubes
+122684 reaction occurs
+====================================
+Geant4 finished!
+/usr/nuclear/root/bin:/afs/nd.edu/user30/mcouder/geant4/bin/Linux-g++:/opt/und/schrodinger/2006:/opt/und/schrodinger/2006/utilities:/opt/und/local/bin:/opt/und/mathematica/6.0/Executables:/opt/und/maple/11/bin:/opt/und/intel/compiler81/bin:/opt/und/pgi/6.1-2/linux86-64/6.1/bin:/afs/nd.edu/i386_linux24/opt/und/matlab/7.4/bin:/opt/und/modules/3.1.6/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/usr/X11R6/bin:/usr/X11R6/lib:.:/usr/nuclear/CERN/2002/bin:/usr/nuclear/hhirf:/usr/nuclear/rw01/bin:/usr/nuclear/bin:/usr/nuclear/transport:/usr/nuclear/CERN/root/bin:.:/usr/nuclear/rp/bin:/afs/nd.edu/user30/mcouder/bin:.:/afs/nd.edu/user30/mcouder/bin:.
+/usr/nuclear/root/lib:/usr/X11R6/lib64:/usr/nuclear/clhep/2.0.3.1/lib:/usr/nuclear/geant/4.9.0/lib/geant4/Linux-g++:/opt/und/local/lib:/opt/und/intel/compiler81/lib:/opt/und/pgi/6.1-2/linux86-64/6.1/lib:/usr/nuclear/CERN/root/lib:/usr/nuclear/src/pgplot
